@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text, Box } from '@chakra-ui/react';
+import { Heading, Box, Center } from '@chakra-ui/react';
 
 function App() {
   return (
     <Box>
-      <Text>Lendie App</Text>
+      <Center>
+        <Heading>Lendie App</Heading>
+      </Center>
     </Box>
   );
 }
