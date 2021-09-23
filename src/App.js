@@ -1,13 +1,15 @@
 import React from 'react';
-import { Heading, Box, Center } from '@chakra-ui/react';
+import { Heading, Center, Icon, Flex } from '@chakra-ui/react';
+import { IoIosHourglass } from 'react-icons/io';
 
 function App() {
   return (
-    <Box>
-      <Center>
-        <Heading>Lendie App</Heading>
-      </Center>
-    </Box>
+    <Center h="90vh">
+      <Flex align="center">
+        <Icon as={IoIosHourglass} mr={2} boxSize={8} />
+        <Heading>Lendie App </Heading>
+      </Flex>
+    </Center>
   );
 }
 
