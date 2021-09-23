@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Box } from '@chakra-ui/react';
+import { Text, Box, Stack } from '@chakra-ui/react';
 
 function App() {
   return (
