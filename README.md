@@ -4,8 +4,7 @@ A full stack application that features user registration/login and allows you to
 
 ## Description
 
-This project is the submssion of Group 5 in Stutern's Inter-track Project
-Backend:[api](https://github.com/Abdul-Asa/lendie-loan-api)
+This project is the submssion of Group 5 in Stutern's Inter-track Project ([api])(https://github.com/Abdul-Asa/lendie-loan-api)
 
 ## Rules
 
