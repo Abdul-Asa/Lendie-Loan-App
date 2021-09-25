@@ -5,9 +5,11 @@ A full stack application that features user registration/login and allows you to
 ## Description
 
 This project is the submssion of Group 5 in Stutern's Inter-track Project
+Backend:[api](https://github.com/Abdul-Asa/lendie-loan-api)
 
 ## Rules
 
 - Never push to **master** directly. Create a new branch and open a pr for any changes.
 - Check the [Trello Board](https://trello.com/b/5r6OGwmD/inter-track-project-lendie-still-due-to-change) frequently for any new updates or your assigned tasks
   (More to come)
+- Run 'npm install' to download all dependecies before running 'npm run start' to avoid errors
