@@ -128,7 +128,7 @@ const Signup = () => {
           Submit
         </Button>
         {alert && (
-          <Alert maxW="500px" isTruncated overflowX="auto">
+          <Alert maxW="container.lg" isTruncated overflowX="auto">
             {error.message}
           </Alert>
         )}

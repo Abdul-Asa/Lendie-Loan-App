@@ -21,14 +21,15 @@ const Routes = () => {
       <Route path="/signup">
         <Signup />
       </Route>
-      <PrivateRoute>
-        <Dashboard />
-      </PrivateRoute>
+
       <ConfirmRoute
-        path="/auth/confirm"
+        path="/auth/confirm/:confirmationCode"
         onSuccess={<ConfirmationSuccess />}
         onFailure={<ConfirmationFailure />}
       />
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
     </Switch>
   );
 };
