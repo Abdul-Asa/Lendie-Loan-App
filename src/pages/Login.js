@@ -6,26 +6,27 @@ import {
   Stack,
   Text,
   Button,
+  Alert,
   FormControl,
   FormLabel,
   Input,
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react';
-// import { getUser, setUser } from '../utils/LocalStorage';
-// import { useHistory } from 'react-router-dom';
+import { getUser, setUser } from '../utils/LocalStorage';
+import { useHistory } from 'react-router-dom';
 
-// import { loginAction } from '../utils/Actions';
+import { loginAction } from '../utils/Actions';
 
 const Login = () => {
-  // let history = useHistory();
-  // const user = getUser();
-  // if (user) {
-  //   history.push('/user/home');
-  // }
-  // const [error, setError] = useState({ message: '' });
-  // const [alert, showAlert] = useState(false);
-  // const [loading, setLoading] = useState(false);
+  let history = useHistory();
+  const user = getUser();
+  if (user) {
+    history.push('/user/home');
+  }
+  const [error, setError] = useState({ message: '' });
+  const [alert, showAlert] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const [loginInfo, setLoginInfo] = useState({
@@ -40,21 +41,28 @@ const Login = () => {
   };
   const submitLogin = (e) => {
     e.preventDefault();
-    // setLoading(true);
-    // loginAction(loginInfo).then((response) => {
-    //   setError(response);
-    //   setLoading(false);
-    //   showAlert(true);
-    //   console.log(error);
-    //   if (response.message === 'success') {
-    //     setUser(response);
-    //     history.push('user/home');
-    //   }
-    // });
+    setLoading(true);
+    loginAction(loginInfo)
+      .then((response) => {
+        setError(response);
+        setLoading(false);
+        showAlert(true);
+        console.log(error);
+        if (response.message === 'success') {
+          setUser(response);
+          history.push('user/home');
+        }
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+        showAlert(true);
+        console.log(error);
+      });
   };
 
   return (
-    <Center h="90vh">
+    <Center h="90vh" p={2}>
       <Stack spacing={6}>
         <Flex align="center" my={6}>
           <Heading> Login </Heading>
@@ -86,9 +94,19 @@ const Login = () => {
             </InputRightElement>
           </InputGroup>
         </FormControl>
-        <Button size="lg" colorScheme="teal" onClick={submitLogin}>
+        <Button
+          size="lg"
+          colorScheme="teal"
+          onClick={submitLogin}
+          isLoading={loading}
+        >
           Submit
         </Button>{' '}
+        {alert && (
+          <Alert maxW="500px" isTruncated overflowX="auto">
+            {error.message}
+          </Alert>
+        )}
         <Text as="a" href="/" textAlign="center" textDecoration="underline">
           Home
         </Text>

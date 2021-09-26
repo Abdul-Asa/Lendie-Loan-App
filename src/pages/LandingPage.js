@@ -1,8 +1,15 @@
 // import {useState} from 'react';
 import { Heading, Center, Icon, Flex, Stack, Button } from '@chakra-ui/react';
 import { IoIosHourglass } from 'react-icons/io';
+import { useHistory } from 'react-router-dom';
+import { getUser } from '../utils/LocalStorage';
 
 const LandingPage = () => {
+  let history = useHistory();
+  const user = getUser();
+  if (user) {
+    history.push('/user/home');
+  }
   return (
     <Center h="90vh">
       <Stack>

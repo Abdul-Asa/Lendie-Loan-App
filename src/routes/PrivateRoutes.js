@@ -1,5 +1,5 @@
 import { Route, Redirect } from 'react-router-dom';
-// import { getUser } from '../utils/Common';
+import { getUser } from '../utils/LocalStorage';
 
 function PrivateRoute({ children, ...rest }) {
   const user = getUser();
