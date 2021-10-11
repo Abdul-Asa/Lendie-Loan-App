@@ -22,6 +22,10 @@ const Routes = () => {
         <Signup />
       </Route>
 
+      <Route path="/about-us"></Route>
+      <Route path="/why-lendie"></Route>
+      <Route path="/FAQS"></Route>
+      <Route path="/contact-us"></Route>
       <ConfirmRoute
         path="/auth/confirm/:confirmationCode"
         onSuccess={<ConfirmationSuccess />}
