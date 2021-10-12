@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <Box
-      position="Sticky"
+      position="sticky"
       top="0"
       left="0"
       width="100%"
@@ -27,7 +27,7 @@ const Navbar = () => {
       <Flex align="center" px="4" h="88px" minW="300px">
         <Box
           alignItems="center"
-          ml={[0, 16, 2, 28]}
+          ml={[0, 2, 2, 28]}
           p="16px"
           borderRadius="60px"
           bg="white"
@@ -47,6 +47,7 @@ const Navbar = () => {
           <Text as="a" href="/about-us">
             About
           </Text>
+
           <Text as="a" href="/why-lendie">
             Why Lendie
           </Text>
@@ -110,25 +111,36 @@ const Navbar = () => {
             icon={
               openMenu ? <HiX size="20px" /> : <HiOutlineMenu size="20px" />
             }
+            bg="whiteAlpha.800"
+            color="brand.300"
             onClick={() => setOpenMenu(!openMenu)}
           />
         </Flex>
       </Flex>
       <Collapse in={openMenu} animateOpacity>
         <Box h="full" display={{ base: 'block', md: 'none' }}>
-          <Stack alignItems="center">
-            <Text as="a" href="/about-us">
-              About
-            </Text>
-            <Text as="a" href="/why-lendie">
-              Why Lendie
-            </Text>
-            <Text as="a" href="/FAQS">
-              FAQs
-            </Text>
-            <Text as="a" href="/contact-us">
-              Contact Us
-            </Text>
+          <Stack p="16px" ml={3}>
+            <Flex h="30px" shadow="bottom">
+              <Text as="a" href="/about-us">
+                About
+              </Text>
+            </Flex>
+            <Flex h="30px">
+              <Text as="a" href="/why-lendie">
+                Why Lendie
+              </Text>
+            </Flex>
+            <Flex h="30px">
+              {' '}
+              <Text as="a" href="/FAQS">
+                FAQs
+              </Text>
+            </Flex>
+            <Flex h="30px">
+              <Text as="a" href="/contact-us">
+                Contact Us
+              </Text>
+            </Flex>
           </Stack>
         </Box>
       </Collapse>
