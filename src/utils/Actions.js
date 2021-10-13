@@ -18,6 +18,7 @@ export const signupAction = async (data) => {
       return response.data;
     });
 };
+
 export const verifyUser = (url) => {
   return axios
     .get(`https://lendie-loan-app.herokuapp.com/api${url}`)

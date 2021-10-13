@@ -1,5 +1,13 @@
 // import {useState} from 'react';
-import { Heading, Icon, Flex, VStack, Button, } from '@chakra-ui/react';
+import {
+  Heading,
+  Center,
+  Icon,
+  Flex,
+  Stack,
+  Button,
+  Text,
+} from '@chakra-ui/react';
 import { IoIosHourglass } from 'react-icons/io';
 import { useHistory } from 'react-router-dom';
 import { getUser } from '../utils/LocalStorage';
@@ -14,7 +22,7 @@ const LandingPage = () => {
     history.push('/user/home');
   }
   return (
-    <VStack bg='#fff' h='100%'>
+    <VStack bg="#fff" h="100%">
       <TopNav />
       <HeroSection />
       <About />
@@ -31,7 +39,6 @@ const LandingPage = () => {
         </Button>
       </Flex>
     </VStack>
-    
   );
 };
 
