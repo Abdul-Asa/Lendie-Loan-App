@@ -4,6 +4,7 @@ import {
   Center,
   Icon,
   Flex,
+  VStack,
   Stack,
   Button,
   Text,
@@ -11,9 +12,9 @@ import {
 import { IoIosHourglass } from 'react-icons/io';
 import { useHistory } from 'react-router-dom';
 import { getUser } from '../utils/LocalStorage';
-import TopNav from '../components/entry-pages/TopNav';
-import HeroSection from '../components/entry-pages/HeroSection';
-import About from '../components/About';
+import Navbar from '../components/Navbar';
+import HeroSection from '../components/landing page/HeroSection';
+import About from '../components/landing page/About';
 
 const LandingPage = () => {
   let history = useHistory();
@@ -23,7 +24,7 @@ const LandingPage = () => {
   }
   return (
     <VStack bg="#fff" h="100%">
-      <TopNav />
+      <Navbar />
       <HeroSection />
       <About />
       <Flex>

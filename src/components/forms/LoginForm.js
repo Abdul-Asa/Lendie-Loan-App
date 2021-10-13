@@ -59,6 +59,9 @@ const LoginForm = () => {
         if (response.message.includes('email')) {
           setErrorType({ type: 'info', emailInv: true });
         }
+        if (response.message.includes('Pending')) {
+          setErrorType({ type: 'info', emailInv: false });
+        }
 
         setLoading(false);
         console.log(error);

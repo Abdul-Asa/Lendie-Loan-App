@@ -12,7 +12,7 @@ const Login = () => {
       <Flex
         py={[4, 10, 16]}
         direction={{ base: 'column-reverse', md: 'row' }}
-        mx={[2, 10, 6, '15%']}
+        mx={[4, 10, 6, '15%']}
         align="center"
         justify="space-between"
       >

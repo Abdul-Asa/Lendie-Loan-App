@@ -7,6 +7,7 @@ import ConfirmationSuccess from '../components/verification/ConfirmationSuccess'
 import LandingPage from '../pages/LandingPage';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
+import EmailConfirmation from '../pages/EmailConfirmation';
 import Signup from '../pages/Signup';
 
 const Routes = () => {
@@ -26,6 +27,10 @@ const Routes = () => {
       <Route path="/why-lendie"></Route>
       <Route path="/FAQS"></Route>
       <Route path="/contact-us"></Route>
+      <Route path="/email-confirmation">
+        <EmailConfirmation />
+      </Route>
+
       <ConfirmRoute
         path="/auth/confirm/:confirmationCode"
         onSuccess={<ConfirmationSuccess />}
