@@ -8,6 +8,7 @@ import {
   Collapse,
   Heading,
   Text,
+  Divider,
   Stack,
   IconButton,
 } from '@chakra-ui/react';
@@ -23,6 +24,7 @@ const Navbar = () => {
       width="100%"
       bg="brand.100"
       as="nav"
+      zIndex="overlay"
     >
       <Flex align="center" px="4" h="88px" minW="300px">
         <Box
@@ -44,17 +46,17 @@ const Navbar = () => {
           spacing="8"
           display={{ base: 'none', md: 'block' }}
         >
-          <Text as="a" href="/about-us">
+          <Text as="a" href="/about-us" _hover={{ color: 'brand.200' }}>
             About
           </Text>
 
-          <Text as="a" href="/why-lendie">
+          <Text as="a" href="/why-lendie" _hover={{ color: 'brand.200' }}>
             Why Lendie
           </Text>
-          <Text as="a" href="/FAQS">
+          <Text as="a" href="/FAQS" _hover={{ color: 'brand.200' }}>
             FAQs
           </Text>
-          <Text as="a" href="/contact-us">
+          <Text as="a" href="/contact-us" _hover={{ color: 'brand.200' }}>
             Contact Us
           </Text>
         </HStack>
@@ -119,26 +121,40 @@ const Navbar = () => {
       </Flex>
       <Collapse in={openMenu} animateOpacity>
         <Box h="full" display={{ base: 'block', md: 'none' }}>
-          <Stack p="16px" ml={3}>
-            <Flex h="30px" shadow="bottom">
+          <Stack p="16px" color="brand.300" ml={8} fontWeight="600">
+            <Flex h="30px">
               <Text as="a" href="/about-us">
                 About
               </Text>
             </Flex>
+            <Divider />
             <Flex h="30px">
               <Text as="a" href="/why-lendie">
                 Why Lendie
               </Text>
             </Flex>
+            <Divider />
             <Flex h="30px">
-              {' '}
               <Text as="a" href="/FAQS">
                 FAQs
               </Text>
             </Flex>
+            <Divider />
             <Flex h="30px">
               <Text as="a" href="/contact-us">
                 Contact Us
+              </Text>
+            </Flex>
+            <Divider />
+            <Flex h="30px">
+              <Text as="a" href="/login">
+                Login
+              </Text>
+            </Flex>
+            <Divider />
+            <Flex h="30px">
+              <Text as="a" href="/signup">
+                Sign up
               </Text>
             </Flex>
           </Stack>
