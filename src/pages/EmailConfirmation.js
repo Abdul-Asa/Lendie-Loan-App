@@ -1,8 +1,8 @@
 // import {useState} from 'react';
 import { Heading, Center, Icon, Flex, Stack, Text } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { IoIosHourglass } from 'react-icons/io';
-import { removeUser } from '../utils/LocalStorage';
+// import { removeUser } from '../utils/LocalStorage';
 const EmailConfirmation = () => {
   return (
     <Center h="90vh">

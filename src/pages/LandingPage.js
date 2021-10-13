@@ -1,13 +1,13 @@
 // import {useState} from 'react';
 import {
   Heading,
-  Center,
+  // Center,
   Icon,
   Flex,
   VStack,
-  Stack,
+  // Stack,
   Button,
-  Text,
+  // Text,
 } from '@chakra-ui/react';
 import { IoIosHourglass } from 'react-icons/io';
 import { useHistory } from 'react-router-dom';
