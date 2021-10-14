@@ -8,12 +8,12 @@ function HeroSection() {
     const [isNotSmallerScreen] = useMediaQuery('min-width:600px');
 
     return (
-        <HStack alignSelf='flex-start'>
+        <HStack alignSelf='flex-start' >
             <Flex>
-                <HStack>
+                <HStack  h='100vh' pb={28}>
                     <Flex>
                         <Box>
-                            <Text ml={32} mt={20} size='extrabold' fontWeight='bold' fontSize={isNotSmallerScreen ? "20": "44"} fontFamily='EB Garamond' color='#00072D'>
+                            <Text ml={32}  size='extrabold' fontWeight='bold' fontSize={isNotSmallerScreen ? "20": "44"} fontFamily='EB Garamond' color='#0A2472'>
                                 Are you In need of extra cash?<br />
                                 Getting a loan for quick short-<br />
                                 term financial crunches should<br />
@@ -25,7 +25,7 @@ function HeroSection() {
                             </Text>
                             <Button ml={32} mt={7} bg='#0A2472' h='14' fontSize='18px'>Request Loan</Button>
                         </Box>
-                        <Stack mt={8} alignItems='flex-end'>
+                        <Stack mt={2} alignItems='flex-end'>
                             <Container justifySelf='flex-end' ml={80} pl={6} pt={1} w='40' h='8' bg='#0E6BA8'>
                                 Loan Calculator
                             </Container>
