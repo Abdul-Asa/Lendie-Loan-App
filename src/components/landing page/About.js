@@ -8,7 +8,7 @@ import {
   Heading,
 } from '@chakra-ui/layout';
 import React from 'react';
-// import { useMediaQuery } from '@chakra-ui/media-query';
+import girlIcon from '../icons/girl.svg.svg';
 import Icon from '@chakra-ui/icon';
 import { Button } from '@chakra-ui/button';
 import { FaCheckCircle } from 'react-icons/fa';
@@ -20,7 +20,7 @@ function About() {
   return (
     <HStack ml={32} justifyItems="flex-start">
       <Flex justify="space-between">
-        <Image src="../images/girl.svg" color="#00072D" />
+        <Image src={girlIcon} color="#00072D" />
         <Container>
           <VStack justifySelf="flex-end" alignItems="flex-start">
             <Text color="#3A3A3C" fontSize="16">
