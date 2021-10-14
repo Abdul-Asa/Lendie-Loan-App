@@ -1,11 +1,11 @@
 // import {useState} from 'react';
-import { VStack } from '@chakra-ui/react';
+import { VStack, Box } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import { getUser } from '../utils/LocalStorage';
-import TopNav from '../components/entry-pages/TopNav';
-import HeroSection from '../components/entry-pages/HeroSection';
-import About from '../components/About';
-import WhyLendie from '../components/WhyLendie';
+import Navbar from '../components/Navbar';
+import HeroSection from '../components/landing page/HeroSection';
+import About from '../components/landing page/About';
+import WhyLendie from '../components/landing page/WhyLendie';
 import Footer from '../components/Footer';
 
 const LandingPage = () => {
@@ -15,13 +15,13 @@ const LandingPage = () => {
     history.push('/user/home');
   }
   return (
-    <VStack bg="#fff" h="100%">
+    <Box minh="100vh">
       <Navbar />
       <HeroSection />
       <About pb={160} h="100vh" />
       <WhyLendie />
       <Footer />
-    </VStack>
+    </Box>
   );
 };
 
