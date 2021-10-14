@@ -1,5 +1,5 @@
 // import {useState} from 'react';
-import { VStack, Box } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import { getUser } from '../utils/LocalStorage';
 import Navbar from '../components/Navbar';

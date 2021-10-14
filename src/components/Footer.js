@@ -1,13 +1,4 @@
-import {
-  VStack,
-  Box,
-  Stack,
-  HStack,
-  Text,
-  Flex,
-  Center,
-  Heading,
-} from '@chakra-ui/react';
+import { VStack, Box, HStack, Text, Flex, Heading } from '@chakra-ui/react';
 import React from 'react';
 import { IconButton } from '@chakra-ui/button';
 import {
