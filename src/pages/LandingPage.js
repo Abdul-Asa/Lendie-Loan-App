@@ -7,6 +7,8 @@ import HeroSection from '../components/entry-pages/HeroSection';
 import About from '../components/About';
 import WhyLendie from '../components/WhyLendie';
 import Footer from '../components/Footer';
+import TalkToUs from '../components/TalkToUs';
+import FAQs from '../components/FAQs';
 
 const LandingPage = () => {
   let history = useHistory();
@@ -20,6 +22,8 @@ const LandingPage = () => {
       <HeroSection />
       <About pb={160} h='100vh' />
       <WhyLendie />
+      <FAQs />
+      <TalkToUs />
       <Footer />
     </VStack>
     

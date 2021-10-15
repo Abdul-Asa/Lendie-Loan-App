@@ -4,7 +4,8 @@ import { useMediaQuery } from '@chakra-ui/media-query';
 import Icon from '@chakra-ui/icon';
 import { Button } from '@chakra-ui/button';
 import {FaCheckCircle} from 'react-icons/fa'
-import { Image } from '@chakra-ui/react';
+import { Img } from '@chakra-ui/react';
+
 
 
 
@@ -16,7 +17,7 @@ function About() {
     return (
         <HStack ml={32} justifyItems='flex-start' >
             <Flex justify='space-between'>
-                <Image  src='../images/girl.svg' color='#00072D'/>
+            <Img src='../images/girl-doing-online-payment 1.jpg' color="#00072D" />
                 <Container>
                     <VStack justifySelf='flex-end' alignItems='flex-start'>
                         <Text color='#3A3A3C' fontSize='16'> Quick cash, No stress</Text>

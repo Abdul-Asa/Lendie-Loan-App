@@ -18,31 +18,30 @@ function WhyLendie() {
                                 <VStack >
                                     <Image></Image>
                                     <Text color='#0A2472'> Sign Up</Text>
-                                    <Text color='#0A2472' justifySelf='center'> sign up to create your<br /> Account</Text>
+                                    <Text color='#0A2472' textAlign='center'> sign up to create your<br /> Account</Text>
                                 </VStack>
                             </Center>
                         </Box>
-                        <Box justifyItems='center' h='40'>
-                            <Center>
-                                <VStack>
-                                    <Image></Image>
-                                    <Text color='#0A2472'>Apply</Text>
-                                    <Text color='#0A2472'>Choose a loan amount and apply<br /> with your valid IDs </Text>
-                                </VStack>
-                            </Center>
+                        <Box  h='40'>
+                            
+                            <VStack>
+                                <Image></Image>
+                                <Text color='#0A2472'>Apply</Text>
+                                <Text color='#0A2472' textAlign='center'>Choose a loan amount and apply<br /> with your valid IDs </Text>
+                            </VStack>
                         </Box>
                         <Box alignItems='center' h='40'>
                             <VStack>
                                 <Image></Image>
                                 <Text color='#0A2472'>Verify</Text>
-                                <Text color='#0A2472'>You would then need to verify<br /> information you have provided</Text>
+                                <Text color='#0A2472' textAlign='center'>You would then need to verify<br /> information you have provided</Text>
                             </VStack>
                         </Box>
                         <Box alignItems='center' h='40'>
                             <VStack>
                                 <Image></Image>
                                 <Text color='#0A2472'> Get Funded</Text>
-                                <Text color='#0A2472' justifySelf='center'>After completing previous steps,<br /> you would receive loan amount <br /> requested in your bank account in<br /> few minutes.</Text>
+                                <Text color='#0A2472' textAlign='center'>After completing previous steps,<br /> you would receive loan amount <br /> requested in your bank account in<br /> few minutes.</Text>
                             </VStack>
                         </Box>
                         
