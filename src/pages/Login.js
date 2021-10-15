@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from '../components/forms/LoginForm';
 import Navbar from '../components/Navbar';
-// import Footer from '../components/Footer';
+import Footer from '../components/Footer';
 import BroIcon from '../components/icons/bro.svg';
 import { Box, Flex, Image } from '@chakra-ui/react';
 
@@ -19,7 +19,7 @@ const Login = () => {
         <Image src={BroIcon} boxSize="sm" mt={{ base: 10, md: '0' }} />
         <LoginForm />
       </Flex>
-      {/* <Footer /> */}
+      <Footer />
     </Box>
   );
 };

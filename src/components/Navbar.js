@@ -46,7 +46,7 @@ const Navbar = () => {
           spacing="8"
           display={{ base: 'none', md: 'block' }}
         >
-          <Text as="a" href="/about-us" _hover={{ color: 'brand.200' }}>
+          <Text as="a" href="#About" _hover={{ color: 'brand.200' }}>
             About
           </Text>
 

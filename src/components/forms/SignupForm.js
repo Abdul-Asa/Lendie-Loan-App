@@ -129,7 +129,8 @@ const SignupForm = () => {
           prevTab();
           setErrorType({ type: 'error', field: 'dateOfBirth' });
           setError({
-            message: 'You are not old enough to use Lendie services',
+            message:
+              'You are not old enough to use Lendie services (21 years or older)',
           });
         }
         if (response.message.includes('Email')) {
