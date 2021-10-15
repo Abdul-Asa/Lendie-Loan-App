@@ -7,6 +7,8 @@ import HeroSection from '../components/landing page/HeroSection';
 import About from '../components/landing page/About';
 import WhyLendie from '../components/landing page/WhyLendie';
 import Footer from '../components/Footer';
+import TalkToUs from '../components/landing page/TalkToUs';
+import FAQs from '../components/landing page/FAQs';
 
 const LandingPage = () => {
   let history = useHistory();
@@ -20,6 +22,8 @@ const LandingPage = () => {
       <HeroSection />
       <About />
       <WhyLendie />
+      <FAQs />
+      <TalkToUs />
       <Footer />
     </Box>
   );
