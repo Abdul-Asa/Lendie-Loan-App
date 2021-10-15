@@ -1,4 +1,12 @@
-import { VStack, Box, HStack, Text, Flex, Heading } from '@chakra-ui/react';
+import {
+  VStack,
+  Box,
+  HStack,
+  Text,
+  Flex,
+  Heading,
+  Stack,
+} from '@chakra-ui/react';
 import React from 'react';
 import { IconButton } from '@chakra-ui/button';
 import {
@@ -19,88 +27,94 @@ function Footer() {
         w="full"
         justify="space-evenly"
       >
-        <VStack align={['auto', 'flex-start']} pb={8}>
-          <Heading color="#0A2472" fontSize="20" fontWeight="bold" pb={4}>
-            Useful Links
-          </Heading>
-          <Text
-            color="#00072D"
-            pb={2}
-            as="a"
-            href="/about-us"
-            _hover={{ color: 'brand.200' }}
-          >
-            About
-          </Text>
-          <Text
-            color="#00072D"
-            pb={2}
-            as="a"
-            href="/why-lendie"
-            _hover={{ color: 'brand.200' }}
-          >
-            Why Lendie
-          </Text>
-          <Text
-            color="#00072D"
-            pb={2}
-            as="a"
-            href="/FAQS"
-            _hover={{ color: 'brand.200' }}
-          >
-            FAQs
-          </Text>
-          <Text
-            color="#00072D"
-            pb={2}
-            as="a"
-            href="/contact-us"
-            _hover={{ color: 'brand.200' }}
-          >
-            Contact Us
-          </Text>
-        </VStack>
-        <VStack align={['auto', 'flex-start']} pb={8}>
-          <Heading color="#0A2472" fontSize="20" fontWeight="bold" pb={4}>
-            Services
-          </Heading>
-          <Text
-            color="#00072D"
-            pb={2}
-            as="a"
-            href="/about-us"
-            _hover={{ color: 'brand.200' }}
-          >
-            About
-          </Text>
-          <Text
-            color="#00072D"
-            pb={2}
-            as="a"
-            href="/why-lendie"
-            _hover={{ color: 'brand.200' }}
-          >
-            Why Lendie
-          </Text>
-          <Text
-            color="#00072D"
-            pb={2}
-            as="a"
-            href="/FAQS"
-            _hover={{ color: 'brand.200' }}
-          >
-            FAQs
-          </Text>
-          <Text
-            color="#00072D"
-            pb={2}
-            as="a"
-            href="/contact-us"
-            _hover={{ color: 'brand.200' }}
-          >
-            Contact Us
-          </Text>
-        </VStack>
+        <Flex
+          direction={['column', 'row', 'row']}
+          justify="space-between"
+          minWidth={['0', '300px', '450px']}
+        >
+          <VStack align={['auto', 'flex-start']} pb={8}>
+            <Heading color="#0A2472" fontSize="20" fontWeight="bold" pb={4}>
+              Useful Links
+            </Heading>
+            <Text
+              color="#00072D"
+              pb={2}
+              as="a"
+              href="/about-us"
+              _hover={{ color: 'brand.200' }}
+            >
+              About
+            </Text>
+            <Text
+              color="#00072D"
+              pb={2}
+              as="a"
+              href="/why-lendie"
+              _hover={{ color: 'brand.200' }}
+            >
+              Why Lendie
+            </Text>
+            <Text
+              color="#00072D"
+              pb={2}
+              as="a"
+              href="/FAQS"
+              _hover={{ color: 'brand.200' }}
+            >
+              FAQs
+            </Text>
+            <Text
+              color="#00072D"
+              pb={2}
+              as="a"
+              href="/contact-us"
+              _hover={{ color: 'brand.200' }}
+            >
+              Contact Us
+            </Text>
+          </VStack>
+          <VStack align={['auto', 'flex-start']} pb={8}>
+            <Heading color="#0A2472" fontSize="20" fontWeight="bold" pb={4}>
+              Services
+            </Heading>
+            <Text
+              color="#00072D"
+              pb={2}
+              as="a"
+              href="/about-us"
+              _hover={{ color: 'brand.200' }}
+            >
+              About
+            </Text>
+            <Text
+              color="#00072D"
+              pb={2}
+              as="a"
+              href="/why-lendie"
+              _hover={{ color: 'brand.200' }}
+            >
+              Why Lendie
+            </Text>
+            <Text
+              color="#00072D"
+              pb={2}
+              as="a"
+              href="/FAQS"
+              _hover={{ color: 'brand.200' }}
+            >
+              FAQs
+            </Text>
+            <Text
+              color="#00072D"
+              pb={2}
+              as="a"
+              href="/contact-us"
+              _hover={{ color: 'brand.200' }}
+            >
+              Contact Us
+            </Text>
+          </VStack>
+        </Flex>
         <VStack
           pr={[0, 0, 10]}
           align={{ base: 'center', md: 'flex-start' }}

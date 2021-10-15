@@ -21,7 +21,11 @@ function HeroSection() {
       justify="space-around"
     >
       <Box p={10} maxW="600px">
-        <Heading color="brand.300" pb={4}>
+        <Heading
+          color="brand.300"
+          pb={4}
+          fontSize={{ base: '24px', md: '30px' }}
+        >
           Are you In need of extra cash? Getting a loan for quick short- term
           financial crunches should not be so tough...
         </Heading>
@@ -29,11 +33,17 @@ function HeroSection() {
           Now you can access loans upto #500,000 with a flat monthly interest
           rate of 2.5% in a few minutes.
         </Text>
-        <Button color="white" bg="brand.300" w={{ base: 'full', md: 'auto' }}>
+        <Button
+          color="white"
+          bg="brand.300"
+          w={['full', 'auto', 'auto']}
+          as="a"
+          href="/login"
+        >
           Request Loan
         </Button>
       </Box>
-      <Box width="420px" shadow="md">
+      <Box maxWidth="420px" shadow="md">
         Loan Calc
       </Box>
     </Flex>

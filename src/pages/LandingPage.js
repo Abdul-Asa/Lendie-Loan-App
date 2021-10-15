@@ -18,7 +18,7 @@ const LandingPage = () => {
     <Box minh="100vh">
       <Navbar />
       <HeroSection />
-      <About pb={160} h="100vh" />
+      <About />
       <WhyLendie />
       <Footer />
     </Box>
