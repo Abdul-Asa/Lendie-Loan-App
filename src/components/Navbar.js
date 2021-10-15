@@ -123,25 +123,25 @@ const Navbar = () => {
         <Box h="full" display={{ base: 'block', md: 'none' }}>
           <Stack p="16px" color="brand.300" ml={8} fontWeight="600">
             <Flex h="30px">
-              <Text as="a" href="/about-us">
+              <Text as="a" href="/#About">
                 About
               </Text>
             </Flex>
             <Divider />
             <Flex h="30px">
-              <Text as="a" href="/why-lendie">
+              <Text as="a" href="/#WhyLendie">
                 Why Lendie
               </Text>
             </Flex>
             <Divider />
             <Flex h="30px">
-              <Text as="a" href="/FAQS">
+              <Text as="a" href="/#FAQs">
                 FAQs
               </Text>
             </Flex>
             <Divider />
             <Flex h="30px">
-              <Text as="a" href="/contact-us">
+              <Text as="a" href="/#ContactUs">
                 Contact Us
               </Text>
             </Flex>
