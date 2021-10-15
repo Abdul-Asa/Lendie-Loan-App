@@ -46,17 +46,17 @@ const Navbar = () => {
           spacing="8"
           display={{ base: 'none', md: 'block' }}
         >
-          <Text as="a" href="#About" _hover={{ color: 'brand.200' }}>
+          <Text as="a" href="/#About" _hover={{ color: 'brand.200' }}>
             About
           </Text>
 
-          <Text as="a" href="/why-lendie" _hover={{ color: 'brand.200' }}>
+          <Text as="a" href="/#WhyLendie" _hover={{ color: 'brand.200' }}>
             Why Lendie
           </Text>
-          <Text as="a" href="/FAQS" _hover={{ color: 'brand.200' }}>
+          <Text as="a" href="/#FAQs" _hover={{ color: 'brand.200' }}>
             FAQs
           </Text>
-          <Text as="a" href="/contact-us" _hover={{ color: 'brand.200' }}>
+          <Text as="a" href="/#ContactUs" _hover={{ color: 'brand.200' }}>
             Contact Us
           </Text>
         </HStack>

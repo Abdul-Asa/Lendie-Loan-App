@@ -1,76 +1,94 @@
-import { Button } from '@chakra-ui/button';
-import { Box, VStack, Text, Center, Flex } from '@chakra-ui/layout';
+import {
+  Button,
+  VStack,
+  Text,
+  Center,
+  Flex,
+  Heading,
+  Image,
+} from '@chakra-ui/react';
 import React from 'react';
-import { Image } from '@chakra-ui/image';
+import Goodluck from '../icons/good-luck.svg';
+import Shield from '../icons/shield.svg';
+import Recruitment from '../icons/recruitment.svg';
+import Financial from '../icons/financial-support.svg';
+
 //import  from '../components/images/girl.svg';
 
 function WhyLendie() {
   return (
-    <VStack>
-      <Text
-        color="#0A2472"
-        fontSize="18"
-        fontWeight="bold"
-        justifySelf="center"
-      >
+    <VStack m={[2, 10, 20]} py={[16, 0, 0]}>
+      <Heading color="#0A2472" fontSize="22px" fontWeight="bold">
         How Does Lendie Work?
-      </Text>
+      </Heading>
       <Flex
         direction={{ base: 'column', md: 'row' }}
-        m={[2, 10, 20]}
-        justify="space-around"
+        pt={12}
+        w="full"
+        justify="space-evenly"
+        align={['center', 'center', 'start']}
       >
-        {' '}
-        <Box justifyItems="center" h="40">
-          <Center>
-            <VStack textAlign="center">
-              <Image></Image>
-              <Text color="#0A2472"> Sign Up</Text>
-              <Text color="#0A2472" justifySelf="center">
-                {' '}
-                sign up to create your
-                <br /> Account
-              </Text>
-            </VStack>
-          </Center>
-        </Box>
-        <Box justifyItems="center" h="40">
-          <Center>
-            <VStack>
-              <Image></Image>
-              <Text color="#0A2472">Apply</Text>
-              <Text color="#0A2472">
-                Choose a loan amount and apply
-                <br /> with your valid IDs{' '}
-              </Text>
-            </VStack>
-          </Center>
-        </Box>
-        <Box alignItems="center" h="40">
-          <VStack>
-            <Image></Image>
-            <Text color="#0A2472">Verify</Text>
-            <Text color="#0A2472">
-              You would then need to verify
-              <br /> information you have provided
-            </Text>
-          </VStack>
-        </Box>
-        <Box alignItems="center" h="40">
-          <VStack>
-            <Image></Image>
-            <Text color="#0A2472"> Get Funded</Text>
+        <Center pb={[16, 0, 0]} maxW="230px">
+          <VStack textAlign="center" spacing="10px">
+            <Image src={Goodluck} boxSize="80px" mb={10} />
+            <Heading color="#0A2472" fontSize="22px">
+              Sign Up
+            </Heading>
             <Text color="#0A2472" justifySelf="center">
-              After completing previous steps,
-              <br /> you would receive loan amount <br /> requested in your bank
-              account in
-              <br /> few minutes.
+              Sign up to create your Account
             </Text>
           </VStack>
-        </Box>
+        </Center>
+        <Center pb={[16, 0, 0]} maxW="230px">
+          <VStack textAlign="center" spacing="10px">
+            <Image src={Recruitment} boxSize="80px" mb={10} />
+            <Heading color="#0A2472" fontSize="22px">
+              Apply
+            </Heading>
+            <Text color="#0A2472" justifySelf="center">
+              Choose a loan amount and apply with your valid IDs
+            </Text>
+          </VStack>
+        </Center>
+        <Center pb={[16, 0, 0]} maxW="230px">
+          <VStack textAlign="center" spacing="10px">
+            <Image src={Shield} boxSize="80px" mb={10} />
+            <Heading color="#0A2472" fontSize="22px">
+              Verify
+            </Heading>
+            <Text color="#0A2472" justifySelf="center">
+              You would then need to verify information you have provided
+            </Text>
+          </VStack>
+        </Center>
+        <Center pb={[16, 0, 0]} maxW="230px">
+          <VStack textAlign="center" spacing="10px">
+            <Image src={Financial} boxSize="80px" mb={10} />
+            <Heading color="#0A2472" fontSize="22px">
+              Get Funded
+            </Heading>
+            <Text color="#0A2472" justifySelf="center">
+              After completing previous steps, you would receieve loan amount
+              requested in your bank account in a few minutes.
+            </Text>
+          </VStack>
+        </Center>
       </Flex>
       <Center>
-        <Button color="#0A2472">Sign up</Button>
+        <Button
+          color="#0A2472"
+          size="lg"
+          _hover={{
+            bgColor: '#DDE5E9',
+          }}
+          mt={2}
+          as="a"
+          w="130px"
+          href="/signup"
+          id="FAQs"
+        >
+          Sign up
+        </Button>
       </Center>
     </VStack>
   );

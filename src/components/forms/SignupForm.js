@@ -351,10 +351,18 @@ const SignupForm = () => {
                   w={['full', '60%']}
                   padding="14px 32px"
                   alignSelf={{ sm: 'center', md: 'auto' }}
-                  color="whiteAlpha.900"
-                  bgColor="brand.300"
                   onClick={nextTab}
                   disabled={!validateForm()}
+                  color="whiteAlpha.900"
+                  _hover={{
+                    bgColor: '#0E6BA8',
+                  }}
+                  _disabled={{
+                    bgColor: '#9DBFF9',
+                    cursor: 'not-allowed',
+                    _hover: { bgColor: '#9DBFF9' },
+                  }}
+                  bgColor="brand.300"
                 >
                   Next
                 </Button>
@@ -567,6 +575,14 @@ const SignupForm = () => {
                   padding="14px 32px"
                   alignSelf={{ sm: 'center', md: 'auto' }}
                   color="whiteAlpha.900"
+                  _hover={{
+                    bgColor: '#0E6BA8',
+                  }}
+                  _disabled={{
+                    bgColor: '#9DBFF9',
+                    cursor: 'not-allowed',
+                    _hover: { bgColor: '#9DBFF9' },
+                  }}
                   bgColor="brand.300"
                   onClick={submitSignup}
                   isLoading={loading}
