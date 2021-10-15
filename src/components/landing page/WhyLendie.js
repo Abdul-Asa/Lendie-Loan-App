@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/button';
-import { Box, HStack, VStack, Text, Center, Flex } from '@chakra-ui/layout';
+import { Box, VStack, Text, Center, Flex } from '@chakra-ui/layout';
 import React from 'react';
 import { Image } from '@chakra-ui/image';
 //import  from '../components/images/girl.svg';
