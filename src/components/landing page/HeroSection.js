@@ -11,15 +11,47 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  Input,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  useNumberInput,
   Heading,
   Tag,
 } from '@chakra-ui/react';
 // import { useMediaQuery } from '@chakra-ui/media-query';
-import React from 'react';
+import React, { useState } from 'react';
 
 function HeroSection() {
-  // const [isNotSmallerScreen] = useMediaQuery('min-width:600px');
+  const [loanCalculator, setLoanCalc] = useState({ amount: 50000, time: 3 });
+  const handleInput = (e) => {
+    if (typeof e === 'number') {
+      setLoanCalc((inp) => {
+        return { ...inp, time: e };
+      });
+    } else {
+      setLoanCalc((inp) => {
+        return { ...inp, [e.target.name]: Number(e.target.value) };
+      });
+    }
+  };
 
+  const checkMax = (e) => {
+    const { name, value } = e.target;
+
+    if (value > 500000) {
+      setLoanCalc((inp) => {
+        return { ...inp, [name]: 500000 };
+      });
+    }
+    if (value < 1000) {
+      setLoanCalc((inp) => {
+        return { ...inp, [name]: 1000 };
+      });
+    }
+  };
   return (
     <Flex
       direction={{ base: 'column', md: 'row' }}
@@ -65,6 +97,94 @@ function HeroSection() {
         </Tag>
         <FormControl px={[6, 8, 12]} py={6} maxW="470px">
           <FormLabel color="#8F90A6" fontSize="sm">
+            How much do you want to borrow?
+          </FormLabel>
+          <Text color="brand.300" mb={2} fontSize="20px">
+            ₦ {loanCalculator.amount.toLocaleString('en-US')}
+          </Text>
+          <Flex justify="space-between">
+            <Button
+              bgColor="#E5F3FF"
+              mr={2}
+              onClick={() => {
+                if (loanCalculator.amount <= 490000) {
+                  setLoanCalc((inp) => {
+                    return {
+                      ...inp,
+                      amount: Number(loanCalculator.amount) + 10000,
+                    };
+                  });
+                } else {
+                  setLoanCalc((inp) => {
+                    return {
+                      ...inp,
+                      amount: 500000,
+                    };
+                  });
+                }
+              }}
+            >
+              +
+            </Button>
+            <Input
+              type="number"
+              min={1000}
+              max={500000}
+              defaultValue={50000}
+              value={loanCalculator.amount}
+              onChange={handleInput}
+              onBlur={checkMax}
+              name="amount"
+            />
+            <Button
+              ml={2}
+              bgColor="#E5F3FF"
+              onClick={() => {
+                if (loanCalculator.amount >= 11000) {
+                  setLoanCalc((inp) => {
+                    return {
+                      ...inp,
+                      amount: Number(loanCalculator.amount) - 10000,
+                    };
+                  });
+                } else {
+                  setLoanCalc((inp) => {
+                    return {
+                      ...inp,
+                      amount: 1000,
+                    };
+                  });
+                }
+              }}
+            >
+              -
+            </Button>
+          </Flex>
+          <Flex justify="space-between" fontSize="12px" p="7px">
+            <Text color="#8F90A6">Min: ₦1,000</Text>
+            <Text color="#8F90A6">Max: ₦500,000</Text>
+          </Flex>
+          <FormLabel color="#8F90A6" fontSize="sm" pt={6}>
+            For how long?
+          </FormLabel>
+          <Text color="brand.300" fontSize="20px">
+            {loanCalculator.time} {loanCalculator.time === 1 ? 'week' : 'weeks'}
+          </Text>
+          <Slider
+            aria-label="slider-ex-1"
+            max={12}
+            min={1}
+            step={1}
+            name="time"
+            value={loanCalculator.time}
+            onChange={handleInput}
+          >
+            <SliderTrack>
+              <SliderFilledTrack />
+            </SliderTrack>
+            <SliderThumb />
+          </Slider>
+          <FormLabel color="#8F90A6" fontSize="sm" pt={8}>
             Purpose of Loan
           </FormLabel>
           <Select
@@ -73,49 +193,25 @@ function HeroSection() {
             name="loanAmount"
             bgColor="#E5F3FF"
           >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-            <option value="P/N">Prefer not to say</option>
+            <option value="DB">Debt consolidation</option>
+            <option value="EE">Emergency expenses</option>
+            <option value="HR">House remodeling</option>
+            <option value="VF">Vehicle finances</option>
+            <option value="SU">Enterprise/Start-up funding</option>
+            <option value="WE">Wedding expenses</option>
+            <option value="CA">Vacation finances</option>
+            <option value="Other">Other...</option>
           </Select>
-          <FormLabel color="#8F90A6" fontSize="sm" pt={8}>
-            For how long?
-          </FormLabel>
-          <Text color="brand.300">1 week</Text>
-          <Slider
-            aria-label="slider-ex-1"
-            defaultValue={30}
-            max={300}
-            step={30}
-          >
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
-          <FormLabel color="#8F90A6" fontSize="sm" pt={8}>
-            How much do you want to borrow?
-          </FormLabel>
-          <Select
-            borderRadius="md"
-            placeholder="Select..."
-            name="loanPurpose"
-            bgColor="#E5F3FF"
-          >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-            <option value="P/N">Prefer not to say</option>
-          </Select>
-          <Flex justify="space-between" fontSize="12px" p="7px">
-            <Text color="#8F90A6">Min: ₦1,000</Text>
-            <Text color="#8F90A6">Max: ₦500,000</Text>
-          </Flex>
+
           <Text color="#0063F7" textAlign="center" fontSize="16px" pt={4}>
             Total payable amount(2.5% flat interest rate per month){' '}
           </Text>
           <Text color="#0E6BA8" textAlign="center" fontSize="30px">
-            ₦99,999.99
+            ₦
+            {(
+              loanCalculator.amount +
+              (loanCalculator.amount * (loanCalculator.time / 4) * 2.5) / 100
+            ).toLocaleString('en-US')}
           </Text>
         </FormControl>
       </Stack>
