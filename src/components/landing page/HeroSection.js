@@ -12,12 +12,6 @@ import {
   SliderFilledTrack,
   SliderThumb,
   Input,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  useNumberInput,
   Heading,
   Tag,
 } from '@chakra-ui/react';
@@ -208,10 +202,22 @@ function HeroSection() {
           </Text>
           <Text color="#0E6BA8" textAlign="center" fontSize="30px">
             ₦
-            {(
-              loanCalculator.amount +
-              (loanCalculator.amount * (loanCalculator.time / 4) * 2.5) / 100
-            ).toLocaleString('en-US')}
+            {(loanCalculator.amount +
+              (loanCalculator.amount * (loanCalculator.time / 4) * 2.5) / 100) %
+              1 ===
+            0
+              ? (
+                  loanCalculator.amount +
+                  (loanCalculator.amount * (loanCalculator.time / 4) * 2.5) /
+                    100
+                ).toLocaleString('en-US')
+              : (
+                  loanCalculator.amount +
+                  (loanCalculator.amount * (loanCalculator.time / 4) * 2.5) /
+                    100
+                )
+                  .toFixed(2)
+                  .toLocaleString('en-US')}
           </Text>
         </FormControl>
       </Stack>
