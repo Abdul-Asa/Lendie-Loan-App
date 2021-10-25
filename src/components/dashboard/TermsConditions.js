@@ -6,7 +6,7 @@ const TermsConditions = () => {
     <Box p={[6, 10, 14]} color="brand.400">
       <Stack spacing="20px" pr={[0, 8, 16]}>
         <Heading pt={2} fontSize={['2xl', '3xl']}>
-          Terms and conditions
+          Terms and conditions (incomplete)
         </Heading>
         <Text>Here are the Terms and Conditions guiding the use of Lendie</Text>
 
