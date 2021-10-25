@@ -18,6 +18,8 @@ import {
 } from '@chakra-ui/react';
 import SideBar from '../components/dashboard/SideBar';
 import { BellIcon } from '../components/icons/icons';
+import TermsConditions from '../components/dashboard/TermsConditions';
+import FAQ from '../components/dashboard/FAQ';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 
@@ -28,7 +30,7 @@ const LandingPage = () => {
   let { path } = useRouteMatch();
 
   return (
-    <Box minH="100vh" transition="0.3s ease" as="section">
+    <Box minH="100vh" transition="0.3s ease" as="section" overflow="hidden">
       {isDesktop ? (
         <SideBar />
       ) : (
@@ -72,7 +74,7 @@ const LandingPage = () => {
               Lendie
             </Heading>
           </Box>
-          <HStack mr={[6, 16]} align="center">
+          <HStack mr={[6, 10, 16]} align="center">
             <Flex>
               <BellIcon position="relative" />
               <Badge
@@ -94,12 +96,13 @@ const LandingPage = () => {
           </HStack>
         </Flex>
 
-        <Box as="main" p="4" bg="#F8F8F8" h="90.5vh">
+        <Box as="main" p={[3, '8']} bg="#F8F8F8" h="90.5vh">
           <Box
             ml={{ base: 0, md: '250px' }}
+            mr={{ base: 0, md: 10 }}
             borderStyle="solid"
             bg="whiteAlpha.900"
-            minH="650px"
+            maxH="650px"
             minW="280px"
             shadow="lg"
             overflow="auto"
@@ -121,10 +124,10 @@ const LandingPage = () => {
                 <Box>Spread the love</Box>
               </Route>
               <Route path={`${path}/FAQs`}>
-                <Box>FAQs</Box>
+                <FAQ />
               </Route>
               <Route path={`${path}/terms&conditions`}>
-                <Box>T and C</Box>
+                <TermsConditions />
               </Route>
             </Switch>
           </Box>
