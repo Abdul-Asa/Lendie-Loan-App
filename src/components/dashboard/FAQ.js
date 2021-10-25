@@ -1,0 +1,163 @@
+import React from 'react';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Box,
+  Heading,
+  Divider,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
+
+function FAQs() {
+  return (
+    <Stack p={[6, 10, 14]} color="brand.400">
+      <Heading fontSize={['2xl', '3xl']} fontWeight="bold">
+        Frequently asked Questions
+      </Heading>
+      <Text>
+        Our customers are frequently asking these questions about loan
+      </Text>
+      <Accordion allowToggle color="#0A2472" w={['95%', '750%', '70%']} pt={12}>
+        <AccordionItem border="none" pb={8}>
+          <AccordionButton
+            borderRadius="lg"
+            bgColor="#E5F3FF"
+            borderBottom="1px"
+            borderColor="brand.200"
+            _expanded={{ borderBottomRadius: 'none', borderBottom: '0' }}
+            _hover={{ bgColor: '#E5F3FF' }}
+          >
+            <Box flex="1" textAlign="left" p={[1, '10px 14px']}>
+              <Heading fontSize={['lg', 'xl']}>
+                {' '}
+                Am I eligible for lendie loan
+              </Heading>
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+
+          <AccordionPanel pb={4} bgColor="#E5F3FF" borderBottomRadius="lg">
+            <Divider borderColor="gray.200" mb={4} />
+            To qualify for a loan, you must be:
+            <Box pl={8}>
+              <ul>
+                <li>Be between 22 – 59 years old</li>
+                <li>Have a verifiable source of income</li>
+                <li>Live and /or work in cities where we operate </li>
+                <li>
+                  Have a savings or current bank account with any commercial
+                  bank
+                </li>
+              </ul>
+            </Box>
+          </AccordionPanel>
+        </AccordionItem>
+        <AccordionItem border="none" pb={8}>
+          <AccordionButton
+            borderRadius="lg"
+            bgColor="#E5F3FF"
+            borderBottom="1px"
+            borderColor="brand.200"
+            _expanded={{ borderBottomRadius: 'none', borderBottom: '0' }}
+            _hover={{ bgColor: '#E5F3FF' }}
+          >
+            <Box flex="1" textAlign="left" p={[1, '10px 14px']}>
+              <Heading fontSize={['lg', 'xl']}> How much can i borrow</Heading>
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+          <AccordionPanel pb={4} bgColor="#E5F3FF" borderBottomRadius="lg">
+            <Divider borderColor="gray.200" mb={4} />
+            You can get up to N1 million for up to 24 months but that is after
+            your first loan is processed suceesfully in which you are only
+            eligible to get a loan of just 10k
+          </AccordionPanel>
+        </AccordionItem>
+        <AccordionItem border="none" pb={8}>
+          <AccordionButton
+            borderRadius="lg"
+            bgColor="#E5F3FF"
+            borderBottom="1px"
+            borderColor="brand.200"
+            _expanded={{ borderBottomRadius: 'none', borderBottom: '0' }}
+            _hover={{ bgColor: '#E5F3FF' }}
+          >
+            <Box flex="1" textAlign="left" p={[1, '10px 14px']}>
+              <Heading fontSize={['lg', 'xl']}>
+                {' '}
+                What documents do i need to apply
+              </Heading>
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+          <AccordionPanel pb={4} bgColor="#E5F3FF" borderBottomRadius="lg">
+            <Divider borderColor="gray.200" mb={4} />A valid goverment ID
+          </AccordionPanel>
+        </AccordionItem>{' '}
+        <AccordionItem border="none" pb={8}>
+          <AccordionButton
+            borderRadius="lg"
+            bgColor="#E5F3FF"
+            borderBottom="1px"
+            borderColor="brand.200"
+            _expanded={{ borderBottomRadius: 'none', borderBottom: '0' }}
+            _hover={{ bgColor: '#E5F3FF' }}
+          >
+            <Box flex="1" textAlign="left" p={[1, '10px 14px']}>
+              <Heading fontSize={['lg', 'xl']}>
+                {' '}
+                Why am i limited to a cash of 10k?
+              </Heading>
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+          <AccordionPanel pb={4} bgColor="#E5F3FF" borderBottomRadius="lg">
+            <Divider borderColor="gray.200" mb={4} />
+            Based on your profile, as a first time user, with an incomplete
+            profile, you are eligible for a maximum amount of 10k. But after
+            successful processing and repayment of your first loan, you become
+            eligible for higher amount upto to #500,000k. Finally, when you
+            complete your profile by updating all the valid information, you
+            eligible for a cash amount of upto 1 million naira
+          </AccordionPanel>
+        </AccordionItem>{' '}
+        <AccordionItem border="none" pb={8}>
+          <AccordionButton
+            borderRadius="lg"
+            bgColor="#E5F3FF"
+            borderBottom="1px"
+            borderColor="brand.200"
+            _expanded={{ borderBottomRadius: 'none', borderBottom: '0' }}
+            _hover={{ bgColor: '#E5F3FF' }}
+          >
+            <Box flex="1" textAlign="left" p={[1, '10px 14px']}>
+              <Heading fontSize={['lg', 'xl']}>
+                Why does Lendie need my BVN?
+              </Heading>
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+          <AccordionPanel pb={4} bgColor="#E5F3FF" borderBottomRadius="lg">
+            <Divider borderColor="gray.200" mb={4} />
+            Your BVN gives us access to information we need to verify you are
+            the real owner and, it helps us keep you safe;
+            <Box pl={8}>
+              <ul>
+                <li>Full Name</li>
+                <li>Date of birth</li>
+                <li>Picture</li>
+                <li>Mobile Number</li>
+              </ul>
+            </Box>
+          </AccordionPanel>
+        </AccordionItem>{' '}
+      </Accordion>
+    </Stack>
+  );
+}
+
+export default FAQs;
