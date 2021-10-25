@@ -19,7 +19,7 @@ import {
 import React, { useState } from 'react';
 
 function HeroSection() {
-  const [loanCalculator, setLoanCalc] = useState({ amount: 50000, time: 3 });
+  const [loanCalculator, setLoanCalc] = useState({ amount: 50000, time: 4 });
   const handleInput = (e) => {
     if (typeof e === 'number') {
       setLoanCalc((inp) => {
