@@ -3,9 +3,10 @@ import {
   Box,
   Flex,
   HStack,
-  Text,
+  Badge,
   Container,
   Avatar,
+  AvatarBadge,
   IconButton,
   Drawer,
   DrawerContent,
@@ -16,6 +17,7 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import SideBar from '../components/dashboard/SideBar';
+import { BellIcon } from '../components/icons/icons';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 
@@ -38,7 +40,7 @@ const LandingPage = () => {
         >
           <DrawerOverlay />
           <DrawerContent>
-            <DrawerCloseButton zIndex="overlay" />
+            <DrawerCloseButton zIndex="overlay" color="whiteAlpha.900" />
             <SideBar w="full" />
           </DrawerContent>
         </Drawer>
@@ -70,13 +72,26 @@ const LandingPage = () => {
               Lendie
             </Heading>
           </Box>
-          <HStack mr={[0, 12]} display={['none', 'flex', 'flex']}>
-            <Container maxW="200px">
-              <Text fontSize="md">Floppa</Text>
+          <HStack mr={[6, 16]} align="center">
+            <Flex>
+              <BellIcon position="relative" />
+              <Badge
+                borderRadius="100%"
+                boxSize="8px"
+                bg="#0063F7"
+                position="absolute"
+              />
+            </Flex>
+
+            <Container maxW="200px" display={['none', 'flex', 'flex']}>
+              <Heading color="brand.300" fontSize="20px">
+                Floppa
+              </Heading>
             </Container>
-            <Avatar size="md" name="Floppa" />
+            <Avatar size="md" name="Floppa" display={['none', 'flex', 'flex']}>
+              <AvatarBadge boxSize="15px" bg="#0063F7" />
+            </Avatar>
           </HStack>
-          <Box display={['flex', 'none', 'none']}></Box>
         </Flex>
 
         <Box as="main" p="4" bg="#F8F8F8" h="90.5vh">
@@ -104,6 +119,9 @@ const LandingPage = () => {
               </Route>
               <Route path={`${path}/share`}>
                 <Box>Spread the love</Box>
+              </Route>
+              <Route path={`${path}/FAQs`}>
+                <Box>FAQs</Box>
               </Route>
               <Route path={`${path}/terms&conditions`}>
                 <Box>T and C</Box>

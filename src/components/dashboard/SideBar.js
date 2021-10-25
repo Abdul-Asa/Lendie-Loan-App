@@ -8,7 +8,6 @@ import {
   WrapItem,
   Container,
   Button,
-  Stack,
   Spinner,
   AlertDialog,
   AlertDialogHeader,
@@ -16,8 +15,14 @@ import {
   AlertDialogContent,
   Center,
 } from '@chakra-ui/react';
-import { FiHome, FiSettings, FiSearch, FiUser, FiLogOut } from 'react-icons/fi';
-import { IoPaperPlaneOutline } from 'react-icons/io5';
+import { FiSettings, FiUser, FiLogOut } from 'react-icons/fi';
+import {
+  MoneyIcon,
+  DashboardIcon,
+  HeartIcon,
+  FAQIcon,
+  TCIcon,
+} from '../icons/icons';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import { removeUser } from '../../utils/LocalStorage';
 
@@ -25,7 +30,6 @@ const SideBar = ({ ...rest }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   let { path } = useRouteMatch();
   const history = useHistory();
-
   return (
     <Box
       w="250px"
@@ -66,91 +70,150 @@ const SideBar = ({ ...rest }) => {
         direction="column"
         align="center"
         justifyContent="space-between"
-        h="80vh"
+        h="83vh"
+        color="white"
       >
-        <Stack mt="16" w="100%" align="center" spacing="30px">
+        <Flex
+          direction="column"
+          mt="12"
+          h="full"
+          w="full"
+          justify="space-between"
+        >
           <Button
-            width="80%"
-            align="left"
-            justifyContent="flex-start"
+            pl={12}
+            w="full"
+            bg="transparent"
+            alignItems="center"
             as="a"
             href={`${path}/`}
-            textDecoration="none"
-            bg="transparent"
+            justifyContent="start"
+            rounded="none"
+            _hover={{ bg: 'brand.200' }}
           >
-            <FiHome /> <Text mx="5">Request loan</Text>
+            <MoneyIcon />
+            <Text mx="5" fontWeight="300">
+              Request loan
+            </Text>
           </Button>
           <Button
-            width="80%"
-            align="left"
+            pl={12}
+            w="full"
+            bg="transparent"
             as="a"
             href={`${path}/profile`}
-            textDecoration="none"
-            justifyContent="flex-start"
-            bg="transparent"
+            justifyContent="start"
+            rounded="none"
+            _hover={{ bg: 'brand.200' }}
           >
-            <FiUser /> <Text mx="5">Profile</Text>
+            <FiUser />
+            <Text mx="5" fontWeight="300">
+              Profile
+            </Text>
           </Button>
           <Button
-            width="80%"
-            align="left"
-            justifyContent="flex-start"
             as="a"
             href={`${path}/overview`}
-            textDecoration="none"
+            pl={12}
             bg="transparent"
+            w="full"
+            alignItems="center"
+            justifyContent="start"
+            rounded="none"
+            _hover={{ bg: 'brand.200' }}
           >
-            <IoPaperPlaneOutline /> <Text mx="5">Dashboard</Text>
+            <DashboardIcon />
+            <Text mx="5" fontWeight="300">
+              Dashboard
+            </Text>
           </Button>
           <Button
-            width="80%"
-            align="left"
-            justifyContent="flex-start"
+            pl={12}
             bg="transparent"
+            w="full"
+            alignItems="center"
+            justifyContent="start"
+            rounded="none"
+            _hover={{ bg: 'brand.200' }}
             as="a"
             href={`${path}/settings`}
-            textDecoration="none"
           >
-            <FiSettings /> <Text mx="5">Settings</Text>
+            <FiSettings />
+            <Text mx="5" fontWeight="300">
+              Settings
+            </Text>
           </Button>
           <Button
-            width="80%"
-            align="left"
-            justifyContent="flex-start"
+            pl={12}
+            w="full"
             bg="transparent"
+            alignItems="center"
+            justifyContent="start"
+            rounded="none"
+            _hover={{ bg: 'brand.200' }}
             as="a"
             href={`${path}/share`}
-            textDecoration="none"
           >
-            <FiSearch /> <Text mx="5">Spread the love</Text>
+            <HeartIcon />{' '}
+            <Text mx="5" fontWeight="300">
+              Spread the love
+            </Text>
           </Button>
           <Button
-            width="80%"
-            align="left"
-            justifyContent="flex-start"
+            pl={12}
+            w="full"
             bg="transparent"
+            alignItems="center"
+            justifyContent="start"
+            rounded="none"
+            _hover={{ bg: 'brand.200' }}
+            as="a"
+            href={`${path}/FAQs`}
+          >
+            <FAQIcon />{' '}
+            <Text mx="5" fontWeight="300">
+              FAQs
+            </Text>
+          </Button>
+          <Button
+            pl={12}
+            w="full"
+            bg="transparent"
+            alignItems="center"
+            justifyContent="start"
+            rounded="none"
+            _hover={{ bg: 'brand.200' }}
             as="a"
             href={`${path}/terms&conditions`}
-            textDecoration="none"
           >
-            <FiSettings /> <Text mx="5">T & C</Text>
+            <TCIcon />
+            <Text mx="5" fontWeight="300">
+              T & C
+            </Text>
           </Button>
-        </Stack>
-        <Button
-          width="80%"
-          align="left"
-          justifyContent="flex-start"
-          bg="transparent"
-          onClick={() => {
-            setIsOpen(true);
-            removeUser();
-            setTimeout(() => {
-              setIsOpen(false);
-              history.push('/');
-            }, 1000);
-          }}
-        >
-          <FiLogOut /> <Text mx="5">Logout</Text>
+          <Button
+            mt="25%"
+            pl={12}
+            w="full"
+            alignItems="center"
+            justifyContent="start"
+            bg="transparent"
+            rounded="none"
+            _hover={{ bg: 'brand.200' }}
+            onClick={() => {
+              setIsOpen(true);
+              removeUser();
+              setTimeout(() => {
+                setIsOpen(false);
+                history.push('/');
+              }, 1000);
+            }}
+          >
+            <FiLogOut />{' '}
+            <Text mx="5" fontWeight="300">
+              Logout
+            </Text>
+          </Button>
           <AlertDialog isOpen={isOpen}>
             <AlertDialogOverlay>
               <AlertDialogContent>
@@ -163,7 +226,7 @@ const SideBar = ({ ...rest }) => {
               </AlertDialogContent>
             </AlertDialogOverlay>
           </AlertDialog>
-        </Button>
+        </Flex>
       </Flex>
     </Box>
   );
