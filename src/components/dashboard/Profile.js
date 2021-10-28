@@ -1,10 +1,6 @@
-import { useState } from 'react';
 import {
-  Heading,
   Box,
-  Flex,
   Stack,
-  Text,
   Tabs,
   TabList,
   TabPanels,
@@ -36,9 +32,9 @@ const Profile = () => {
 
         <Box
           mt="6"
-          borderStyle="solid"
+          // borderStyle="solid"
           bg="whiteAlpha.900"
-          maxH="650px"
+          maxH="610px"
           minW="280px"
           shadow="lg"
           overflow="auto"
