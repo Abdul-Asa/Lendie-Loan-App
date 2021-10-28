@@ -20,6 +20,7 @@ import SideBar from '../components/dashboard/SideBar';
 import { BellIcon } from '../components/icons/icons';
 import TermsConditions from '../components/dashboard/TermsConditions';
 import FAQ from '../components/dashboard/FAQ';
+import RequestLoan from '../components/dashboard/RequestLoan';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 
@@ -109,7 +110,8 @@ const LandingPage = () => {
           >
             <Switch>
               <Route exact path={`${path}/`}>
-                <Box>Request loan</Box>
+                {/* <Box>Request loan</Box> */}
+              <RequestLoan  />
               </Route>
               <Route path={`${path}/profile`}>
                 <Box>Profile</Box>
