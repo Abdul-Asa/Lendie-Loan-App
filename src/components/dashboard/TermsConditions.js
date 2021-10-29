@@ -6,7 +6,7 @@ const TermsConditions = () => {
     <Box p={[6, 10, 14]} color="brand.400">
       <Stack spacing="20px" pr={[0, 8, 16]}>
         <Heading pt={2} fontSize={['2xl', '3xl']}>
-          Terms and conditions (incomplete)
+          Terms and conditions
         </Heading>
         <Text>Here are the Terms and Conditions guiding the use of Lendie</Text>
 
@@ -187,6 +187,150 @@ const TermsConditions = () => {
             the extent permitted by applicable law. We do not undertake to
             update, modify or clarify information on our website, except as
             required by law.
+          </Text>
+          <Heading pt={[2, 4]} fontSize={['xl', '2xl']}>
+            Disclaimer and Limitation of Liability{' '}
+          </Heading>
+          <Text fontSize={['sm', 'md']}>
+            You assume all resonsibility and risk with respect to your use of our
+            website, which is provided  "as is" without warranties, representations
+            or conditions of any kind, either express or implied , with regard to
+            information accessed from or via our website, all of which are provided 
+            without warranty of any kind, including but not limited to warranties 
+            concerning the availabilty, accuracy, completeness or usefulness of 
+            content or information, uninterrupted access, and any warranties of title, 
+            non-infringement, merchantability or fitness for a particular purpose. 
+            We do not warrant that our website or its functioning or the content and 
+            material of the services made available thereby will be timely, secure, 
+            uninterrupted or error-free, that defects will be corrected, or that our 
+            websites or the servers that make our website available are free of viruses 
+            or other harmful components. The use of our website is at your sole risk and 
+            you assume full responsibility for any costs associated with your use of our 
+            website. We will not be liable for any damages of any kind related to the use 
+            of our website. In no event will we, or our affiliates, our or their respective 
+            content or service providers, or any of our or their respective directors, 
+            officers, agents, contractors, suppliers or employees be liable to you for any 
+            direct, indirect, special, incidental, consequential, exemplary or punitive 
+            damages, losses or causes of action, or lost revenue, lost profits, lost business 
+            or sales, or any other type of damage, whether based in contract or tort 
+            (including negligence), strict liability or otherwise, arising from your use of, 
+            or the inability to use, or the performance of, our website or the content or 
+            material or functionality through our website, even if we are advised of the 
+            possibility of such damages. Certain jurisdictions do not allow the limitation 
+            of liability or the exclusion or limitation of certain damages. In such jurisdictions, 
+            some or all of the above disclaimers, exclusions, or limitations, may not apply to you 
+            and our liability will be limited to the maximum extent permitted by law.
+            </Text>
+            <Text fontSize={['sm', 'md']}>
+            Indemnification
+            </Text>
+            <Text fontSize={['sm', 'md']}>
+            You agree to defend and indemnify us, and hold us and our affiliates harmless, and our 
+            and their respective directors, officers, agents, contractors, and employees against any 
+            losses, liabilities, claims, expenses (including legal fees) in any way arising from, 
+            related to or in connection with your use of our website and services, your violation of 
+            the Terms, or the posting or transmission of any materials on or through the website by you, 
+            including but not limited to, any third party claim that any information or materials 
+            provided by you infringe upon any third party proprietary rights.
+          </Text>
+          <Heading pt={[2, 4]} fontSize={['xl', '2xl']}>
+            Entire Agreement{' '}
+          </Heading>
+          <Text fontSize={['sm', 'md']}>
+          The Terms and any documents expressly referred to in them represent the entire agreement between 
+          you and us in relation to the subject matter of the Terms and supersede any prior agreement, 
+          understanding or arrangement between you and us, whether oral or in writing. Both you and we 
+          acknowledge that, in entering into these Terms, neither you nor we have relied on any 
+          representation, undertaking or promise given by the other or implied from anything said or written 
+          between you and us prior to such Terms, except as expressly stated in the Terms.
+          </Text>
+          <Heading pt={[2, 4]} fontSize={['xl', '2xl']}>
+            Data Protection{' '}
+          </Heading>
+          <Text fontSize={['sm', 'md']}>
+          Any personal information collected in relation to the use of this website will be held and used 
+          in accordant with our Privacy Policy, which is available on our Site.
+          </Text>
+          <Heading pt={[2, 4]} fontSize={['xl', '2xl']}>
+          Applicable Law and Jurisdiction{' '}
+          </Heading>
+          <Text fontSize={['sm', 'md']}>
+          These Terms and Conditions of Use shall be interpreted and governed by the laws in force in the 
+          Federal Republic of Nigeria. Subject to the Arbitration section below, each party hereby agrees 
+          to submit to the jurisdiction of the courts of Nigeria and to waive any objections based upon venue.
+          </Text>
+          <Heading pt={[2, 4]} fontSize={['xl', '2xl']}>
+          Arbitration{' '}
+          </Heading>
+          <Text fontSize={['sm', 'md']}>
+          Any controversy, claim or dispute arising out of or relating to these Terms and Conditions of Use 
+          will be referred to and finally settled by private and confidential binding arbitration before a 
+          single arbitrator held in Nigeria in English and governed by Nigeria law pursuant to the Arbitration 
+          and Conciliation Act Cap A18 Laws of the Federation of Nigeria 2004, as amended, replaced or 
+          re-enacted from time to time. The arbitrator shall be a person who is legally trained and who has 
+          experience in the information technology field in Nigeria and is independent of either party. 
+          Notwithstanding the foregoing, the Site reserves the right to pursue the protection of intellectual 
+          property rights and confidential information through injunctive or other equitable relief through the courts.
+          </Text>
+          <Text fontSize={['sm', 'md']}>
+          Termination
+          </Text>
+          <Text fontSize={['sm', 'md']}>
+          In addition to any other legal or equitable remedies, we may, without prior notice to you, immediately 
+          terminate the Terms and Conditions of Use or revoke any or all of your rights granted under the Terms 
+          and Conditions of Use. Upon any termination of this Agreement, you shall immediately cease all access 
+          to and use of the Site and we shall, in addition to any other legal or equitable remedies, immediately 
+          revoke all password(s) and account identification issued to you and deny your access to and use of 
+          this Site in whole or in part. Any termination of this agreement shall not affect the respective 
+          rights and obligations (including without limitation, payment obligations) of the parties arising 
+          before the date of termination. You furthermore agree that the Site shall not be liable to you or to 
+          any other person as a result of any such suspension or termination.
+          </Text>
+          <Text fontSize={['sm', 'md']}>
+          If you are dissatisfied with the Site or with any terms, conditions, rules, policies, guidelines, 
+          or practices of Credpal.com in operating the Site, your sole, and exclusive remedy is to discontinue 
+          using the Site.
+          </Text>
+          <Text fontSize={['sm', 'md']}>
+          Miscellaneous Provisions
+          </Text>
+          <Text fontSize={['sm', 'md']}>
+          You agree that all agreements, notices, disclosures and other communications that we provide to you 
+          electronically satisfy any legal requirement that such communications be in writing. Assigning or 
+          sub-contracting any of your rights or obligations under these Terms and Conditions of Use to any 
+          third party is prohibited unless agreed upon in writing by the seller.
+          </Text>
+          <Text fontSize={['sm', 'md']}>
+          We reserve the right to transfer, assign or subcontract the benefit of the whole or part of any rights 
+          or obligations under these Terms and Conditions of Use to any third party.  
+          </Text>
+          <Heading pt={[2, 4]} fontSize={['xl', '2xl']}>
+          Waiver{' '}
+          </Heading>
+          <Text fontSize={['sm', 'md']}>
+          Our failure to exercise or enforce any right or provision of the Terms will not constitute a waiver of 
+          such right or provision. A waiver by us of any default will not constitute a waiver of any subsequent 
+          default. No waiver by us is effective unless it is communicated to you in writing.
+          </Text>
+          <Heading pt={[2, 4]} fontSize={['xl', '2xl']}>
+          Headings{' '}
+          </Heading>
+          <Text fontSize={['sm', 'md']}>
+          Any headings and titles herein are for convenience only.
+          </Text>
+          <Heading pt={[2, 4]} fontSize={['xl', '2xl']}>
+          Severability{' '}
+          </Heading>
+          <Text fontSize={['sm', 'md']}>
+          If any of the provisions of the Terms are determined by any competent authority to be invalid, 
+          unlawful or unenforceable, such provision will to that extent be severed from the remaining Terms, 
+          which will continue to be valid and enforceable to the fullest extent permitted by law.
+          </Text>
+          <Heading pt={[2, 4]} fontSize={['xl', '2xl']}>
+          Questions or Concerns{' '}
+          </Heading>
+          <Text fontSize={['sm', 'md']}>
+          Please send all questions, comments, and feedback to us at hello@lendie.com
           </Text>
         </Stack>
       </Stack>
