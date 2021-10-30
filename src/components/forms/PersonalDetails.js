@@ -13,14 +13,27 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { AiFillCamera } from 'react-icons/ai';
-import { profilePicAction } from '../../utils/Actions';
+import { profilePicAction, personalInfoAction } from '../../utils/Actions';
 
 const PersonalDetails = () => {
   const [editMode, setEditMode] = useState(false);
   const [profilePic, setProfilePic] = useState({});
   const [imgPath, setPath] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const [personalDetailsForm, setPersonaldetails] = useState({
+    firstName: 'Floppa',
+    lastName: 'Floppa',
+    phoneNumber: '0123456789',
+    NIN: '0000000000000',
+    BVN: '0000000000000',
+    address: 'Floppa Island',
+  });
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setPersonaldetails((inputDetails) => {
+      return { ...inputDetails, [name]: value };
+    });
+  };
   const handleFileChange = ({ target }) => {
     setProfilePic(target.files[0]);
     setPath(URL.createObjectURL(target.files[0]));
@@ -31,11 +44,25 @@ const PersonalDetails = () => {
     const imageData = new FormData();
     imageData.append('image', profilePic);
     setLoading(true);
+    personalInfoAction(personalDetailsForm)
+      .then((response) => {
+        // setError(response);
+        console.log(response);
+        setLoading(false);
+        setEditMode(!editMode);
+      })
+      .catch((err) => {
+        // setError(err);
+        setLoading(false);
+        console.log(err);
+      });
+
     profilePicAction(imageData)
       .then((response) => {
         // setError(response);
         console.log(response);
         setLoading(false);
+        setEditMode(!editMode);
       })
       .catch((err) => {
         // setError(err);
@@ -92,8 +119,9 @@ const PersonalDetails = () => {
               w={['full', 'sm']}
               placeholder="First Name"
               name="firstName"
-              value="floppa"
+              value={personalDetailsForm.firstName}
               isDisabled={!editMode}
+              onChange={handleInput}
             />
           </Box>
           <Box pt={3}>
@@ -106,8 +134,9 @@ const PersonalDetails = () => {
               w={['full', 'sm']}
               placeholder="Last Name"
               name="lastName"
-              value="floppa"
+              value={personalDetailsForm.lastName}
               isDisabled={!editMode}
+              onChange={handleInput}
             />
           </Box>
         </Stack>
@@ -125,8 +154,8 @@ const PersonalDetails = () => {
               w={['full', 'sm']}
               placeholder="Email address"
               name="email"
-              value="floppa"
-              isDisabled={!editMode}
+              value="Floppa@gmail.com"
+              isDisabled
             />
           </Box>
           <Box pt={3}>
@@ -139,8 +168,9 @@ const PersonalDetails = () => {
               w={['full', 'sm']}
               placeholder="Phone Number"
               name="phoneNumber"
-              value="floppa"
+              value={personalDetailsForm.phoneNumber}
               isDisabled={!editMode}
+              onChange={handleInput}
             />
           </Box>
         </Stack>
@@ -158,8 +188,9 @@ const PersonalDetails = () => {
               w={['full', 'sm']}
               placeholder="National Identification Number      "
               name="NIN"
-              value="floppa"
+              value={personalDetailsForm.NIN}
               isDisabled={!editMode}
+              onChange={handleInput}
             />
           </Box>
           <Box pt={3}>
@@ -172,8 +203,9 @@ const PersonalDetails = () => {
               w={['full', 'sm']}
               placeholder="Bank Verification Number"
               name="BVN"
-              value="floppa"
+              value={personalDetailsForm.BVN}
               isDisabled={!editMode}
+              onChange={handleInput}
             />
           </Box>
         </Stack>
@@ -188,8 +220,9 @@ const PersonalDetails = () => {
             maxW="lg"
             placeholder="Residential Address"
             name="address"
-            value="floppa"
+            value={personalDetailsForm.address}
             isDisabled={!editMode}
+            onChange={handleInput}
           />
         </Box>
         <HStack align="center" mt={8} mb={[32, 28, 0]}>
@@ -197,6 +230,7 @@ const PersonalDetails = () => {
             w={['full', '30%']}
             padding="14px 32px"
             color="whiteAlpha.900"
+            isLoading={loading}
             _hover={{
               bgColor: '#0E6BA8',
             }}
@@ -204,8 +238,9 @@ const PersonalDetails = () => {
             onClick={() => {
               if (editMode) {
                 submitForm();
+              } else {
+                setEditMode(!editMode);
               }
-              setEditMode(!editMode);
             }}
           >
             {editMode ? 'Save Profile' : 'Edit Profile'}
