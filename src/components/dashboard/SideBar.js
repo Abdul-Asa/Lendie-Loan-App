@@ -26,10 +26,11 @@ import {
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import { removeUser } from '../../utils/LocalStorage';
 
-const SideBar = ({ ...rest }) => {
+const SideBar = ({ user, ...rest }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   let { path } = useRouteMatch();
   const history = useHistory();
+
   return (
     <Box
       w="250px"
@@ -57,11 +58,11 @@ const SideBar = ({ ...rest }) => {
           as="button"
         >
           <WrapItem>
-            <Avatar size="md" name="Floppa" />
+            <Avatar size="md" name={user.firstName} src={user.image} />
           </WrapItem>
           <WrapItem mx="10">
             <Container maxW="200px">
-              <Text fontSize="md">Floppa</Text>
+              <Text fontSize="md">{user.firstName}</Text>
             </Container>
           </WrapItem>
         </HStack>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Heading,
   HStack,
@@ -7,6 +7,7 @@ import {
   FormLabel,
   Image,
   FormControl,
+  FormHelperText,
   Stack,
   Button,
   Text,
@@ -14,9 +15,72 @@ import {
 } from '@chakra-ui/react';
 import chip from '../icons/chip.svg';
 import visa from '../icons/Visa.svg';
+import { paymentInfoAction, getUserAction } from '../../utils/Actions';
 
 const CardDetails = () => {
   const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [contactDetailsForm, setContactdetails] = useState({
+    cardNumber: '----------------',
+    expiryDate: '----------------',
+  });
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    console.log('Fetching...');
+    const User = getUserAction();
+    User.then((data) => {
+      setUser(data.user);
+      setContactdetails({
+        cardNumber: data.user.cardNumber,
+        cardHolder: data.user.cardHolder,
+        expiryDate: stringDate(data.user.expiryDate),
+        CVV: data.user.CVV,
+        accountName: data.user.accountName,
+        accountNumber: data.user.accountNumber,
+        bankName: data.user.bankName,
+      });
+      console.log(data.message);
+    }).catch((err) => console.log(err));
+  }, [loading]);
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setContactdetails((inputDetails) => {
+      return { ...inputDetails, [name]: value };
+    });
+  };
+  const reformDate = (date) => {
+    let confam = date.replace('-', '');
+    let month = confam.substr(4, 2);
+    let year = confam.substr(0, 4);
+    let final = month + '/' + year;
+    return final;
+  };
+
+  const stringDate = (date) => {
+    let confam = date.replace('-', '');
+    let month = confam.substr(4, 2);
+    let year = confam.substr(0, 4);
+    let final = year + '-' + month;
+    return final;
+  };
+
+  const submitForm = () => {
+    setLoading(true);
+    paymentInfoAction(contactDetailsForm)
+      .then((response) => {
+        // setError(response);
+        console.log(response);
+        setLoading(false);
+        setEditMode(!editMode);
+      })
+      .catch((err) => {
+        // setError(err);
+        setLoading(false);
+        console.log(err);
+      });
+  };
 
   return (
     <Stack p={[2, 4, 6]} spacing="30px" h="1000px">
@@ -41,25 +105,29 @@ const CardDetails = () => {
             </Flex>
             <Image src={chip} pl={['2', '8']}></Image>
             <Flex p="3" color="white" justify="space-evenly">
-              <Heading fontSize="2xl">6219</Heading>
+              <Heading fontSize="2xl">
+                {contactDetailsForm.cardNumber.substr(0, 4)}
+              </Heading>
               <Heading fontSize="2xl">****</Heading>
               <Heading fontSize="2xl">****</Heading>
-              <Heading fontSize="2xl">8075</Heading>
+              <Heading fontSize="2xl">
+                {contactDetailsForm.cardNumber.substr(12, 16)}
+              </Heading>
             </Flex>
             <Flex justify="space-between" color="white" px={['2', '8']} pt={2}>
               <Box>
                 <Text fontSize="9px">Card Holder's Name</Text>
                 <Text isTruncated maxW="160px">
-                  Floppa
+                  {contactDetailsForm.cardHolder}
                 </Text>
               </Box>
               <Box>
                 <Text fontSize="9px">Expiry Date</Text>
-                <Text>08/26</Text>
+                <Text>{reformDate(contactDetailsForm.expiryDate)}</Text>
               </Box>
               <Box>
                 <Text fontSize="9px">CVV</Text>
-                <Text>080</Text>
+                <Text>{contactDetailsForm.CVV}</Text>
               </Box>
             </Flex>
           </Stack>
@@ -73,13 +141,19 @@ const CardDetails = () => {
               </FormLabel>
               <Input
                 borderRadius="md"
-                type="text"
+                type="number"
                 w={['full', 'sm']}
-                placeholder="First Name"
-                name="firstName"
-                value="floppa"
+                placeholder="Card Number"
+                name="cardNumber"
+                value={contactDetailsForm.cardNumber}
+                onChange={handleInput}
                 isDisabled={!editMode}
               />
+              {editMode && (
+                <FormHelperText color="gray" fontSize="14px">
+                  No spaces or special characters i.e * , / , -
+                </FormHelperText>
+              )}
             </Box>
             <Box pt={3}>
               <FormLabel color="#8F90A6" fontSize="sm">
@@ -89,9 +163,10 @@ const CardDetails = () => {
                 borderRadius="md"
                 type="text"
                 w={['full', 'sm']}
-                placeholder="Last Name"
-                name="lastName"
-                value="floppa"
+                placeholder="Card Holder's Name"
+                name="cardHolder"
+                value={contactDetailsForm.cardHolder}
+                onChange={handleInput}
                 isDisabled={!editMode}
               />
             </Box>
@@ -107,11 +182,13 @@ const CardDetails = () => {
               </FormLabel>
               <Input
                 borderRadius="md"
-                type="text"
+                type="number"
+                max={999}
                 w={['full', 'sm']}
-                placeholder="National Identification Number      "
-                name="NIN"
-                value="floppa"
+                placeholder="CVV"
+                name="CVV"
+                value={contactDetailsForm.CVV}
+                onChange={handleInput}
                 isDisabled={!editMode}
               />
             </Box>
@@ -121,11 +198,13 @@ const CardDetails = () => {
               </FormLabel>
               <Input
                 borderRadius="md"
-                type="text"
+                type="month"
+                min="2021-10"
                 w={['full', 'sm']}
-                placeholder="Bank Verification Number"
-                name="BVN"
-                value="floppa"
+                placeholder="Expiry Date"
+                name="expiryDate"
+                value={contactDetailsForm.expiryDate}
+                onChange={handleInput}
                 isDisabled={!editMode}
               />
             </Box>
@@ -145,9 +224,10 @@ const CardDetails = () => {
                 borderRadius="md"
                 type="text"
                 w={['full', 'sm']}
-                placeholder="First Name"
-                name="firstName"
-                value="floppa"
+                placeholder="Account Name"
+                name="accountName"
+                value={contactDetailsForm.accountName}
+                onChange={handleInput}
                 isDisabled={!editMode}
               />
             </Box>
@@ -159,9 +239,10 @@ const CardDetails = () => {
                 borderRadius="md"
                 type="text"
                 w={['full', 'sm']}
-                placeholder="Last Name"
-                name="lastName"
-                value="floppa"
+                placeholder="Account Number"
+                name="accountNumber"
+                value={contactDetailsForm.accountNumber}
+                onChange={handleInput}
                 isDisabled={!editMode}
               />
             </Box>
@@ -178,24 +259,30 @@ const CardDetails = () => {
                 borderRadius="md"
                 type="text"
                 w={['full', 'sm']}
-                placeholder="National Identification Number      "
-                name="NIN"
-                value="floppa"
+                placeholder="Name of bank"
+                name="bankName"
+                value={contactDetailsForm.bankName}
+                onChange={handleInput}
                 isDisabled={!editMode}
               />
             </Box>
           </Stack>
-          <HStack align="center" mt={8}>
+          <HStack align="center" mt={8} mb={[60, 28, 0]}>
             <Button
               w={['full', '30%']}
               padding="14px 32px"
               color="whiteAlpha.900"
+              isLoading={loading}
               _hover={{
                 bgColor: '#0E6BA8',
               }}
               bgColor="brand.300"
               onClick={() => {
-                setEditMode(!editMode);
+                if (editMode) {
+                  submitForm();
+                } else {
+                  setEditMode(!editMode);
+                }
               }}
             >
               {editMode ? 'Save Profile' : 'Edit Profile'}
@@ -210,6 +297,15 @@ const CardDetails = () => {
                 bgColor="brand.300"
                 onClick={() => {
                   setEditMode(!editMode);
+                  setContactdetails({
+                    cardNumber: user.cardNumber,
+                    cardHolder: user.cardHolder,
+                    expiryDate: user.expiryDate,
+                    CVV: user.CVV,
+                    accountName: user.accountName,
+                    accountNumber: user.accountNumber,
+                    bankName: user.bankName,
+                  });
                 }}
               >
                 Cancel

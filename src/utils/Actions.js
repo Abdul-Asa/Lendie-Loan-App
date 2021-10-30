@@ -4,6 +4,11 @@ import axios from 'axios';
 // const { BASEURL } = 'https://lendie-loan-app.herokuapp.com';
 
 const user = getUser();
+const config = {
+  headers: {
+    token: user.token,
+  },
+};
 
 export const loginAction = async (data) => {
   return await axios
@@ -34,6 +39,41 @@ export const profilePicAction = async (data) => {
     .patch(
       `http://lendie-loan-app.herokuapp.com/api/user/profile-pic/${user.id}`,
       data
+    )
+    .then((response) => {
+      return response.data;
+    });
+};
+
+export const personalInfoAction = async (data) => {
+  return axios
+    .patch(
+      `http://lendie-loan-app.herokuapp.com/api/user/update/${user.id}`,
+      data,
+      config
+    )
+    .then((response) => {
+      return response.data;
+    });
+};
+
+export const paymentInfoAction = async (data) => {
+  return axios
+    .patch(
+      `http://lendie-loan-app.herokuapp.com/api/user/update-payment/${user.id}`,
+      data,
+      config
+    )
+    .then((response) => {
+      return response.data;
+    });
+};
+
+export const getUserAction = async (data) => {
+  return await axios
+    .get(
+      `https://lendie-loan-app.herokuapp.com/api/user/get-info/${user.id}`,
+      config
     )
     .then((response) => {
       return response.data;
