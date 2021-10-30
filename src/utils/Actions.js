@@ -41,7 +41,7 @@ export const profilePicAction = async (data) => {
     });
 };
 
-export const personalInfoAction = async (data) => const config = {
+export const personalInfoAction = async (data) => {const config = {
   headers: {
     token: user.token,
   },
@@ -57,7 +57,7 @@ return axios
     });
 };
 
-export const paymentInfoAction = async (data) => const config = {
+export const paymentInfoAction = async (data) => {const config = {
   headers: {
     token: user.token,
   },
