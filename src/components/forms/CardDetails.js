@@ -10,6 +10,7 @@ import {
   FormHelperText,
   Stack,
   Button,
+  useToast,
   Text,
   Input,
 } from '@chakra-ui/react';
@@ -25,6 +26,7 @@ const CardDetails = () => {
     expiryDate: '----------------',
   });
   const [user, setUser] = useState();
+  const toast = useToast();
 
   useEffect(() => {
     console.log('Fetching...');
@@ -70,7 +72,25 @@ const CardDetails = () => {
     setLoading(true);
     paymentInfoAction(contactDetailsForm)
       .then((response) => {
-        // setError(response);
+        if (response.message === 'success') {
+          toast({
+            title: 'Success',
+            position: 'top',
+            description: 'Saved datails',
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: 'Error',
+            position: 'top',
+            description: response.message,
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+          });
+        }
         console.log(response);
         setLoading(false);
         setEditMode(!editMode);

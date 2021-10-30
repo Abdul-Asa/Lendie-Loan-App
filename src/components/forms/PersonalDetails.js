@@ -6,6 +6,7 @@ import {
   Stack,
   FormControl,
   FormLabel,
+  useToast,
   Flex,
   IconButton,
   Input,
@@ -26,6 +27,8 @@ const PersonalDetails = () => {
   const [loading, setLoading] = useState(false);
   const [personalDetailsForm, setPersonaldetails] = useState({});
   const [user, setUser] = useState();
+  // const [error, setError] = useState('');
+  const toast = useToast();
 
   useEffect(() => {
     console.log('Fetching...');
@@ -39,6 +42,7 @@ const PersonalDetails = () => {
         NIN: data.user.NIN,
         BVN: data.user.BVN,
         address: data.user.address,
+        email: data.user.email,
       });
       setPath(data.user.image);
       console.log(data.message);
@@ -60,8 +64,33 @@ const PersonalDetails = () => {
     setLoading(true);
     personalInfoAction(personalDetailsForm)
       .then((response) => {
-        // setError(response);
-        console.log(response);
+        if (response.message === 'success') {
+          toast({
+            title: 'Success',
+            position: 'top',
+            description: 'Saved datails',
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: 'Error',
+            position: 'top',
+            description: response.message,
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+          });
+          setPersonaldetails({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            phoneNumber: user.phoneNumber,
+            NIN: user.NIN,
+            BVN: user.BVN,
+            address: user.address,
+          });
+        }
         setLoading(false);
         setEditMode(!editMode);
       })
@@ -171,7 +200,7 @@ const PersonalDetails = () => {
               w={['full', 'sm']}
               placeholder="Email address"
               name="email"
-              value="Floppa@gmail.com"
+              value={personalDetailsForm.email}
               isDisabled
             />
           </Box>

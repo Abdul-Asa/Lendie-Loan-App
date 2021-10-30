@@ -142,7 +142,7 @@ function RequestLoan({ user }) {
   };
   return (
     <Stack ml={{ base: 0, md: '250px' }} mr={{ base: 0, md: 10 }}>
-      <Info />
+      {user.firstTimeUser && <Info />}
       <Box
         mt="6"
         p={[3, 8, 10]}
@@ -174,66 +174,7 @@ function RequestLoan({ user }) {
             <FormLabel color="#00072D" fontSize="14px">
               Select Loan Amount
             </FormLabel>
-            {editable.amount ? (
-              <Flex justify="space-between" maxW="400px">
-                <Button
-                  bgColor="#E5F3FF"
-                  mr={2}
-                  onClick={() => {
-                    if (loanCalculator.amount <= 490000) {
-                      setLoanCalc((inp) => {
-                        return {
-                          ...inp,
-                          amount: Number(loanCalculator.amount) + 10000,
-                        };
-                      });
-                    } else {
-                      setLoanCalc((inp) => {
-                        return {
-                          ...inp,
-                          amount: 500000,
-                        };
-                      });
-                    }
-                  }}
-                >
-                  +
-                </Button>
-                <Input
-                  type="number"
-                  min={1000}
-                  max={500000}
-                  defaultValue={50000}
-                  value={loanCalculator.amount}
-                  onChange={handleInput}
-                  onBlur={checkMax}
-                  name="amount"
-                />
-                <Button
-                  ml={2}
-                  bgColor="#E5F3FF"
-                  onClick={() => {
-                    if (loanCalculator.amount >= 11000) {
-                      setLoanCalc((inp) => {
-                        return {
-                          ...inp,
-                          amount: Number(loanCalculator.amount) - 10000,
-                        };
-                      });
-                    } else {
-                      setLoanCalc((inp) => {
-                        return {
-                          ...inp,
-                          amount: 1000,
-                        };
-                      });
-                    }
-                  }}
-                >
-                  -
-                </Button>
-              </Flex>
-            ) : (
+            {user.firstTimeUser ? (
               <Select
                 onFocusCapture={blurColor}
                 color={blur.amount ? '' : '#8F90A6'}
@@ -246,26 +187,107 @@ function RequestLoan({ user }) {
                 onChange={handleInput}
               >
                 <option value={1000}> ₦1,000</option>
+                <option value={3000}>₦3,000</option>
+                <option value={5000}>₦5,000</option>
+                <option value={7000}>₦7,000</option>
+                <option value={9000}>₦9,000</option>
                 <option value={10000}>₦10,000</option>
-                <option value={50000}>₦50,000</option>
-                <option value={100000}>₦100,000</option>
-                <option value={250000}>₦250,000</option>
-                <option value={500000}>₦500,000</option>
               </Select>
+            ) : (
+              <>
+                {editable.amount ? (
+                  <Flex justify="space-between" maxW="400px">
+                    <Button
+                      bgColor="#E5F3FF"
+                      mr={2}
+                      onClick={() => {
+                        if (loanCalculator.amount <= 490000) {
+                          setLoanCalc((inp) => {
+                            return {
+                              ...inp,
+                              amount: Number(loanCalculator.amount) + 10000,
+                            };
+                          });
+                        } else {
+                          setLoanCalc((inp) => {
+                            return {
+                              ...inp,
+                              amount: 500000,
+                            };
+                          });
+                        }
+                      }}
+                    >
+                      +
+                    </Button>
+                    <Input
+                      type="number"
+                      min={1000}
+                      max={500000}
+                      defaultValue={50000}
+                      value={loanCalculator.amount}
+                      onChange={handleInput}
+                      onBlur={checkMax}
+                      name="amount"
+                    />
+                    <Button
+                      ml={2}
+                      bgColor="#E5F3FF"
+                      onClick={() => {
+                        if (loanCalculator.amount >= 11000) {
+                          setLoanCalc((inp) => {
+                            return {
+                              ...inp,
+                              amount: Number(loanCalculator.amount) - 10000,
+                            };
+                          });
+                        } else {
+                          setLoanCalc((inp) => {
+                            return {
+                              ...inp,
+                              amount: 1000,
+                            };
+                          });
+                        }
+                      }}
+                    >
+                      -
+                    </Button>
+                  </Flex>
+                ) : (
+                  <Select
+                    onFocusCapture={blurColor}
+                    color={blur.amount ? '' : '#8F90A6'}
+                    placeholder="Select a loan amount"
+                    name="amount"
+                    borderColor="#C7C9D9"
+                    borderRadius="8px"
+                    maxW="400px"
+                    value={loanCalculator.amount}
+                    onChange={handleInput}
+                  >
+                    <option value={1000}> ₦1,000</option>
+                    <option value={10000}>₦10,000</option>
+                    <option value={50000}>₦50,000</option>
+                    <option value={100000}>₦100,000</option>
+                    <option value={250000}>₦250,000</option>
+                    <option value={500000}>₦500,000</option>
+                  </Select>
+                )}
+                <FormHelperText
+                  color="#0063F7"
+                  fontSize="14px"
+                  as="button"
+                  onClick={() =>
+                    setEditable((inputDetails) => {
+                      return { ...inputDetails, amount: !editable.amount };
+                    })
+                  }
+                >
+                  Want a different amount?
+                </FormHelperText>
+              </>
             )}
-
-            <FormHelperText
-              color="#0063F7"
-              fontSize="14px"
-              as="button"
-              onClick={() =>
-                setEditable((inputDetails) => {
-                  return { ...inputDetails, amount: !editable.amount };
-                })
-              }
-            >
-              Want a different amount?
-            </FormHelperText>
           </FormControl>
           <FormControl mt={[3, 0]}>
             <FormLabel color="#00072D" fontSize="14px">

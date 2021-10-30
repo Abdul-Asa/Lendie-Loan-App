@@ -36,7 +36,11 @@ import { getUserAction } from '../utils/Actions';
 
 const LandingPage = () => {
   const [isDesktop] = useMediaQuery('(min-width: 48em)');
-  const [user, setUser] = useState({ firstName: '', image: '' });
+  const [user, setUser] = useState({
+    firstName: '',
+    image: '',
+    firstTimeUser: true,
+  });
   const [loading, setLoading] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
