@@ -124,7 +124,6 @@ function HeroSection() {
               type="number"
               min={1000}
               max={500000}
-              defaultValue={50000}
               value={loanCalculator.amount}
               onChange={handleInput}
               onBlur={checkMax}
