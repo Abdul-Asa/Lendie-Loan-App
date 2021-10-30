@@ -21,8 +21,9 @@ import {
   useRadio,
   useRadioGroup,
 } from '@chakra-ui/react';
+
 //
-function RequestLoan() {
+function RequestLoan({ user }) {
   function RadioCard(props) {
     const { getInputProps, getCheckboxProps } = useRadio(props);
 
@@ -151,7 +152,7 @@ function RequestLoan() {
         overflow="auto"
       >
         <Heading color="#333333" fontSize="24px">
-          Hello Floppa 👋
+          Hello {user.firstName} 👋
         </Heading>
         <Heading
           color="#333333"

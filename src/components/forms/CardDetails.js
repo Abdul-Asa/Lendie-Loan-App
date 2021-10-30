@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Heading,
   HStack,
@@ -15,20 +15,35 @@ import {
 } from '@chakra-ui/react';
 import chip from '../icons/chip.svg';
 import visa from '../icons/Visa.svg';
-import { paymentInfoAction } from '../../utils/Actions';
+import { paymentInfoAction, getUserAction } from '../../utils/Actions';
 
 const CardDetails = () => {
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [contactDetailsForm, setContactdetails] = useState({
-    cardNumber: '5555555555555555',
-    cardHolder: 'Floppa',
-    expiryDate: '2021-12',
-    CVV: '332',
-    accountName: 'Floppa',
-    accountNumber: '0000000000000',
-    bankName: 'Floppa Bank',
+    cardNumber: '----------------',
+    expiryDate: '----------------',
   });
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    console.log('Fetching...');
+    const User = getUserAction();
+    User.then((data) => {
+      setUser(data.user);
+      setContactdetails({
+        cardNumber: data.user.cardNumber,
+        cardHolder: data.user.cardHolder,
+        expiryDate: stringDate(data.user.expiryDate),
+        CVV: data.user.CVV,
+        accountName: data.user.accountName,
+        accountNumber: data.user.accountNumber,
+        bankName: data.user.bankName,
+      });
+      console.log(data.message);
+    }).catch((err) => console.log(err));
+  }, [loading]);
+
   const handleInput = (e) => {
     const { name, value } = e.target;
     setContactdetails((inputDetails) => {
@@ -36,9 +51,18 @@ const CardDetails = () => {
     });
   };
   const reformDate = (date) => {
-    let month = date.substr(5, 7);
-    let year = date.substr(2, 2);
+    let confam = date.replace('-', '');
+    let month = confam.substr(4, 2);
+    let year = confam.substr(0, 4);
     let final = month + '/' + year;
+    return final;
+  };
+
+  const stringDate = (date) => {
+    let confam = date.replace('-', '');
+    let month = confam.substr(4, 2);
+    let year = confam.substr(0, 4);
+    let final = year + '-' + month;
     return final;
   };
 
@@ -273,6 +297,15 @@ const CardDetails = () => {
                 bgColor="brand.300"
                 onClick={() => {
                   setEditMode(!editMode);
+                  setContactdetails({
+                    cardNumber: user.cardNumber,
+                    cardHolder: user.cardHolder,
+                    expiryDate: user.expiryDate,
+                    CVV: user.CVV,
+                    accountName: user.accountName,
+                    accountNumber: user.accountNumber,
+                    bankName: user.bankName,
+                  });
                 }}
               >
                 Cancel

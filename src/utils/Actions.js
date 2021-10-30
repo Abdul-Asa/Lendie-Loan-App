@@ -68,3 +68,14 @@ export const paymentInfoAction = async (data) => {
       return response.data;
     });
 };
+
+export const getUserAction = async (data) => {
+  return await axios
+    .get(
+      `https://lendie-loan-app.herokuapp.com/api/user/get-info/${user.id}`,
+      config
+    )
+    .then((response) => {
+      return response.data;
+    });
+};

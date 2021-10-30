@@ -11,23 +11,39 @@ import {
   Input,
   HStack,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AiFillCamera } from 'react-icons/ai';
-import { profilePicAction, personalInfoAction } from '../../utils/Actions';
+import {
+  profilePicAction,
+  personalInfoAction,
+  getUserAction,
+} from '../../utils/Actions';
 
 const PersonalDetails = () => {
   const [editMode, setEditMode] = useState(false);
-  const [profilePic, setProfilePic] = useState({});
+  const [profilePic, setProfilePic] = useState();
   const [imgPath, setPath] = useState({});
   const [loading, setLoading] = useState(false);
-  const [personalDetailsForm, setPersonaldetails] = useState({
-    firstName: 'Floppa',
-    lastName: 'Floppa',
-    phoneNumber: '0123456789',
-    NIN: '0000000000000',
-    BVN: '0000000000000',
-    address: 'Floppa Island',
-  });
+  const [personalDetailsForm, setPersonaldetails] = useState({});
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    console.log('Fetching...');
+    const User = getUserAction();
+    User.then((data) => {
+      setUser(data.user);
+      setPersonaldetails({
+        firstName: data.user.firstName,
+        lastName: data.user.lastName,
+        phoneNumber: data.user.phoneNumber,
+        NIN: data.user.NIN,
+        BVN: data.user.BVN,
+        address: data.user.address,
+      });
+      setPath(data.user.image);
+      console.log(data.message);
+    }).catch((err) => console.log(err));
+  }, [loading]);
   const handleInput = (e) => {
     const { name, value } = e.target;
     setPersonaldetails((inputDetails) => {
@@ -41,8 +57,6 @@ const PersonalDetails = () => {
   };
 
   const submitForm = () => {
-    const imageData = new FormData();
-    imageData.append('image', profilePic);
     setLoading(true);
     personalInfoAction(personalDetailsForm)
       .then((response) => {
@@ -56,19 +70,22 @@ const PersonalDetails = () => {
         setLoading(false);
         console.log(err);
       });
-
-    profilePicAction(imageData)
-      .then((response) => {
-        // setError(response);
-        console.log(response);
-        setLoading(false);
-        setEditMode(!editMode);
-      })
-      .catch((err) => {
-        // setError(err);
-        setLoading(false);
-        console.log(err);
-      });
+    if (profilePic) {
+      const imageData = new FormData();
+      imageData.append('image', profilePic);
+      profilePicAction(imageData)
+        .then((response) => {
+          // setError(response);
+          console.log(response);
+          setLoading(false);
+          setEditMode(!editMode);
+        })
+        .catch((err) => {
+          // setError(err);
+          setLoading(false);
+          console.log(err);
+        });
+    }
   };
 
   return (
@@ -255,6 +272,14 @@ const PersonalDetails = () => {
               bgColor="brand.300"
               onClick={() => {
                 setEditMode(!editMode);
+                setPersonaldetails({
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  phoneNumber: user.phoneNumber,
+                  NIN: user.NIN,
+                  BVN: user.BVN,
+                  address: user.address,
+                });
               }}
             >
               Cancel
