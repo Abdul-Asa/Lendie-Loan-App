@@ -4,11 +4,7 @@ import axios from 'axios';
 // const { BASEURL } = 'https://lendie-loan-app.herokuapp.com';
 
 const user = getUser();
-const config = {
-  headers: {
-    token: user.token,
-  },
-};
+
 
 export const loginAction = async (data) => {
   return await axios
@@ -45,8 +41,12 @@ export const profilePicAction = async (data) => {
     });
 };
 
-export const personalInfoAction = async (data) => {
-  return axios
+export const personalInfoAction = async (data) => {const config = {
+  headers: {
+    token: user.token,
+  },
+};
+return axios
     .patch(
       `http://lendie-loan-app.herokuapp.com/api/user/update/${user.id}`,
       data,
@@ -57,8 +57,12 @@ export const personalInfoAction = async (data) => {
     });
 };
 
-export const paymentInfoAction = async (data) => {
-  return axios
+export const paymentInfoAction = async (data) => {const config = {
+  headers: {
+    token: user.token,
+  },
+};
+return axios
     .patch(
       `http://lendie-loan-app.herokuapp.com/api/user/update-payment/${user.id}`,
       data,
@@ -70,7 +74,12 @@ export const paymentInfoAction = async (data) => {
 };
 
 export const getUserAction = async (data) => {
-  return await axios
+  const config = {
+  headers: {
+    token: user.token,
+  },
+};
+return await axios
     .get(
       `https://lendie-loan-app.herokuapp.com/api/user/get-info/${user.id}`,
       config
