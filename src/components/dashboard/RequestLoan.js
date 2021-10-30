@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Info from './Info';
 import {
   Box,
@@ -6,6 +6,10 @@ import {
   Stack,
   Flex,
   Input,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
   FormControl,
   FormLabel,
   FormHelperText,
@@ -19,7 +23,6 @@ import {
 } from '@chakra-ui/react';
 //
 function RequestLoan() {
-  // 1. Create a component that consumes the `useRadio` hook
   function RadioCard(props) {
     const { getInputProps, getCheckboxProps } = useRadio(props);
 
@@ -51,17 +54,91 @@ function RequestLoan() {
       </Box>
     );
   }
-
   const options = ['1 WEEK', '2 WEEKS', '1 MONTH', '2 MONTHS', '3 MONTHS'];
-
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'time',
     defaultValue: '1 MONTH',
-    onChange: console.log,
+    onChange: (value) => {
+      if (value === '1 WEEK') {
+        setLoanCalc((inp) => {
+          return { ...inp, time: 1 };
+        });
+      }
+      if (value === '2 WEEKS') {
+        setLoanCalc((inp) => {
+          return { ...inp, time: 2 };
+        });
+      }
+      if (value === '1 MONTH') {
+        setLoanCalc((inp) => {
+          return { ...inp, time: 4 };
+        });
+      }
+      if (value === '2 MONTHS') {
+        setLoanCalc((inp) => {
+          return { ...inp, time: 8 };
+        });
+      }
+      if (value === '3 MONTHS') {
+        setLoanCalc((inp) => {
+          return { ...inp, time: 12 };
+        });
+      }
+    },
   });
-
   const group = getRootProps();
 
+  const [editable, setEditable] = useState({ amount: false, time: false });
+  const checkMax = (e) => {
+    const { name, value } = e.target;
+
+    if (value > 500000) {
+      setLoanCalc((inp) => {
+        return { ...inp, [name]: 500000 };
+      });
+    }
+    if (value < 1000) {
+      setLoanCalc((inp) => {
+        return { ...inp, [name]: 1000 };
+      });
+    }
+  };
+  const [blur, setBlur] = useState({ amount: false, purpose: false });
+  const blurColor = (e) => {
+    const { name } = e.target;
+    if (name === 'amount') {
+      setBlur((i) => {
+        return { ...i, amount: true };
+      });
+    }
+    if (name === 'purpose') {
+      setBlur((i) => {
+        return { ...i, purpose: true };
+      });
+    }
+  };
+  const [loanCalculator, setLoanCalc] = useState({
+    amount: 0,
+    time: 4,
+    purpose: '',
+  });
+  const handleInput = (e) => {
+    if (typeof e === 'number') {
+      setLoanCalc((inp) => {
+        return { ...inp, time: e };
+      });
+    } else {
+      const { name, value } = e.target;
+      if (name === 'amount') {
+        return setLoanCalc((inputDetails) => {
+          return { ...inputDetails, [name]: Number(value) };
+        });
+      }
+      setLoanCalc((inputDetails) => {
+        return { ...inputDetails, [name]: value };
+      });
+    }
+  };
   return (
     <Stack ml={{ base: 0, md: '250px' }} mr={{ base: 0, md: 10 }}>
       <Info />
@@ -96,20 +173,96 @@ function RequestLoan() {
             <FormLabel color="#00072D" fontSize="14px">
               Select Loan Amount
             </FormLabel>
-            <Select
-              placeholder="10000"
-              color="#C7C9D9"
-              borderColor="#C7C9D9"
-              borderRadius="8px"
-              maxW="400px"
+            {editable.amount ? (
+              <Flex justify="space-between" maxW="400px">
+                <Button
+                  bgColor="#E5F3FF"
+                  mr={2}
+                  onClick={() => {
+                    if (loanCalculator.amount <= 490000) {
+                      setLoanCalc((inp) => {
+                        return {
+                          ...inp,
+                          amount: Number(loanCalculator.amount) + 10000,
+                        };
+                      });
+                    } else {
+                      setLoanCalc((inp) => {
+                        return {
+                          ...inp,
+                          amount: 500000,
+                        };
+                      });
+                    }
+                  }}
+                >
+                  +
+                </Button>
+                <Input
+                  type="number"
+                  min={1000}
+                  max={500000}
+                  defaultValue={50000}
+                  value={loanCalculator.amount}
+                  onChange={handleInput}
+                  onBlur={checkMax}
+                  name="amount"
+                />
+                <Button
+                  ml={2}
+                  bgColor="#E5F3FF"
+                  onClick={() => {
+                    if (loanCalculator.amount >= 11000) {
+                      setLoanCalc((inp) => {
+                        return {
+                          ...inp,
+                          amount: Number(loanCalculator.amount) - 10000,
+                        };
+                      });
+                    } else {
+                      setLoanCalc((inp) => {
+                        return {
+                          ...inp,
+                          amount: 1000,
+                        };
+                      });
+                    }
+                  }}
+                >
+                  -
+                </Button>
+              </Flex>
+            ) : (
+              <Select
+                onFocusCapture={blurColor}
+                color={blur.amount ? '' : '#8F90A6'}
+                placeholder="Select a loan amount"
+                name="amount"
+                borderColor="#C7C9D9"
+                borderRadius="8px"
+                maxW="400px"
+                value={loanCalculator.amount}
+                onChange={handleInput}
+              >
+                <option value={1000}> ₦1,000</option>
+                <option value={10000}>₦10,000</option>
+                <option value={50000}>₦50,000</option>
+                <option value={100000}>₦100,000</option>
+                <option value={250000}>₦250,000</option>
+                <option value={500000}>₦500,000</option>
+              </Select>
+            )}
+
+            <FormHelperText
+              color="#0063F7"
+              fontSize="14px"
+              as="button"
+              onClick={() =>
+                setEditable((inputDetails) => {
+                  return { ...inputDetails, amount: !editable.amount };
+                })
+              }
             >
-              <option>1000</option>
-              <option>2000</option>
-              <option>3000</option>
-              <option>5000</option>
-              <option>8000</option>
-            </Select>
-            <FormHelperText color="#0063F7" fontSize="14px">
               Want a different amount?
             </FormHelperText>
           </FormControl>
@@ -118,19 +271,25 @@ function RequestLoan() {
               Purpose of Loan
             </FormLabel>
             <Select
+              onFocusCapture={blurColor}
+              color={blur.purpose ? '' : '#8F90A6'}
+              name="purpose"
               placeholder="Purpose of loan"
-              color="gray"
               borderColor="#C7C9D9"
               borderRadius="8px"
               maxW="400px"
+              value={loanCalculator.purpose}
+              onChange={handleInput}
             >
-              <option value="DB">Debt consolidation</option>
-              <option value="EE">Emergency expenses</option>
-              <option value="HR">House remodeling</option>
-              <option value="VF">Vehicle finances</option>
-              <option value="SU">Enterprise/Start-up funding</option>
-              <option value="WE">Wedding expenses</option>
-              <option value="CA">Vacation finances</option>
+              <option value="Debt consolidation">Debt consolidation</option>
+              <option value="Emergency expenses">Emergency expenses</option>
+              <option value="House remodeling">House remodeling</option>
+              <option value="Vehicle finances">Vehicle finances</option>
+              <option value="Enterprise/Start-up funding">
+                Enterprise/Start-up funding
+              </option>
+              <option value="Wedding expenses">Wedding expenses</option>
+              <option value="Vacation finances">Vacation finances</option>
               <option value="Other">Other...</option>
             </Select>
           </FormControl>
@@ -138,24 +297,59 @@ function RequestLoan() {
         <Box pl={1} pt={8} mb={[32, 28, 0]}>
           <FormControl>
             <Text color="#333333">Loan Period</Text>
-            <Stack
-              {...group}
-              pt={2}
-              spacing="15px"
-              direction={['column', 'column', 'row']}
-              px={[2, 0]}
+            {editable.time ? (
+              <>
+                <Text color="brand.300" pt={2} px={[2, 0]} fontSize="18px">
+                  {loanCalculator.time}{' '}
+                  {loanCalculator.time === 1 ? 'week' : 'weeks'}
+                </Text>
+                <Stack spacing="15px" px={[2, 0]}>
+                  <Slider
+                    aria-label="slider-ex-1"
+                    max={12}
+                    min={1}
+                    step={1}
+                    name="time"
+                    maxW="400px"
+                    value={loanCalculator.time}
+                    onChange={handleInput}
+                  >
+                    <SliderTrack>
+                      <SliderFilledTrack />
+                    </SliderTrack>
+                    <SliderThumb />
+                  </Slider>
+                </Stack>
+              </>
+            ) : (
+              <Stack
+                {...group}
+                pt={2}
+                spacing="15px"
+                direction={['column', 'column', 'row']}
+                px={[2, 0]}
+              >
+                {options.map((value) => {
+                  const radio = getRadioProps({ value });
+                  return (
+                    <RadioCard key={value} {...radio}>
+                      {value}
+                    </RadioCard>
+                  );
+                })}
+              </Stack>
+            )}
+            <FormHelperText
+              color="#0063F7"
+              fontSize="14px"
+              as="button"
+              onClick={() =>
+                setEditable((inputDetails) => {
+                  return { ...inputDetails, time: !editable.time };
+                })
+              }
             >
-              {options.map((value) => {
-                const radio = getRadioProps({ value });
-                return (
-                  <RadioCard key={value} {...radio}>
-                    {value}
-                  </RadioCard>
-                );
-              })}
-            </Stack>
-            <FormHelperText color="#0063F7" fontSize="14px">
-              Want a different amount?
+              Want a different duration?
             </FormHelperText>
           </FormControl>
           <Flex
@@ -169,12 +363,16 @@ function RequestLoan() {
                 Loan Interest
               </FormLabel>
               <InputGroup>
-                <InputLeftElement
-                  color="#C7C9D9"
-                  pointerEvents="none"
-                  children="N |"
+                <InputLeftElement pointerEvents="none" children="₦ |" />
+                <Input
+                  borderColor="#C7C9D9"
+                  maxW="400px"
+                  isReadOnly
+                  value={(
+                    (loanCalculator.amount * (loanCalculator.time / 4) * 2.5) /
+                    100
+                  ).toLocaleString('en-US')}
                 />
-                <Input borderColor="#C7C9D9" maxW="400px" isReadOnly />
               </InputGroup>
             </FormControl>
             <FormControl mt={[3, 0]}>
@@ -182,12 +380,17 @@ function RequestLoan() {
                 Total Amount Payable
               </FormLabel>
               <InputGroup>
-                <InputLeftElement
-                  color="#C7C9D9"
-                  pointerEvents="none"
-                  children="N |"
+                <InputLeftElement pointerEvents="none" children="₦ |" />
+                <Input
+                  borderColor="#C7C9D9"
+                  maxW="400px"
+                  isReadOnly
+                  value={(
+                    loanCalculator.amount +
+                    (loanCalculator.amount * (loanCalculator.time / 4) * 2.5) /
+                      100
+                  ).toLocaleString('en-US')}
                 />
-                <Input borderColor="#C7C9D9" maxW="400px" isReadOnly />
               </InputGroup>
             </FormControl>
           </Flex>
