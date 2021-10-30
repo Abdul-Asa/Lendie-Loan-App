@@ -17,7 +17,7 @@ import {
 
 const Overview = () => {
     return(
-        <Box p={[6, 10, 5]} mb={4} bg='brand.100'>
+        <Box borderRadius={5} p={[6, 15, 5, 10]} bg='brand.100'>
             <Heading ml={2} fontSize={16}>Loan Overview</Heading>
                 <Box display='flex'>
                     <Box w='400px' borderRadius={5} m="2" p={6} bg='#fff'>
@@ -61,7 +61,7 @@ const Overview = () => {
                     <Tbody>
                         <Tr>
                             <Td fontSize={10}>Others</Td>
-                            <Td fontSize={10}><Text color='#fff' bg='brand.success' borderRadius='5' pt={1} pb={1} pl={4} pr={4} >Completed</Text></Td>
+                            <Td fontSize={10}><Text color='#fff' bg='brand.success' textAlign='center' borderRadius='5' pt={1} pb={1} pl={4} pr={4} >Completed</Text></Td>
                             <Td fontSize={10}>#10,000</Td>
                             <Td fontSize={10}>#750</Td>
                             <Td fontSize={10}>15/10/21</Td>
