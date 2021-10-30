@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Flex,
   HStack,
+  Spinner,
+  AlertDialog,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  Center,
   Badge,
   Container,
   Avatar,
@@ -26,17 +32,33 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import Profile from '../components/dashboard/Profile';
 import Overview from '../components/dashboard/Overview';
+import { getUserAction } from '../utils/Actions';
 
 const LandingPage = () => {
   const [isDesktop] = useMediaQuery('(min-width: 48em)');
+  const [user, setUser] = useState({ firstName: '', image: '' });
+  const [loading, setLoading] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   let { path } = useRouteMatch();
 
+  useEffect(() => {
+    const User = getUserAction();
+    User.then((data) => {
+      setUser(data.user);
+      setLoading(false);
+    }).catch((err) => {
+      console.log(err);
+    });
+    return () => {
+      setLoading(false);
+    };
+  }, [loading]);
+
   return (
     <Box minH="100vh" transition="0.3s ease" as="section" overflow="hidden">
       {isDesktop ? (
-        <SideBar />
+        <SideBar user={user} />
       ) : (
         <Drawer
           isOpen={isOpen}
@@ -47,7 +69,7 @@ const LandingPage = () => {
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton zIndex="overlay" color="whiteAlpha.900" />
-            <SideBar w="full" />
+            <SideBar w="full" user={user} />
           </DrawerContent>
         </Drawer>
       )}
@@ -91,10 +113,15 @@ const LandingPage = () => {
 
             <Container maxW="200px" display={['none', 'flex', 'flex']}>
               <Heading color="brand.300" fontSize="20px">
-                Floppa
+                {user.firstName}
               </Heading>
             </Container>
-            <Avatar size="md" name="Floppa" display={['none', 'flex', 'flex']}>
+            <Avatar
+              size="md"
+              name={user.firstName}
+              src={user.image}
+              display={['none', 'flex', 'flex']}
+            >
               <AvatarBadge boxSize="15px" bg="#0063F7" />
             </Avatar>
           </HStack>
@@ -105,7 +132,7 @@ const LandingPage = () => {
             <Route exact path={`${path}/`}>
               {/* <Box>Request loan</Box> */}
 
-              <RequestLoan />
+              <RequestLoan user={user} />
             </Route>
             <Route path={`${path}/profile`}>
               <Profile />
@@ -196,6 +223,18 @@ const LandingPage = () => {
           </Switch>
         </Box>
       </Box>
+      <AlertDialog isOpen={loading} isCentered>
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              <Center>
+                <Text mx="20px">Loading</Text>
+                <Spinner />
+              </Center>
+            </AlertDialogHeader>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
     </Box>
   );
 };
