@@ -24,6 +24,7 @@ import RequestLoan from '../components/dashboard/RequestLoan';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import Profile from '../components/dashboard/Profile';
+import Overview from '../components/dashboard/Overview';
 
 const LandingPage = () => {
   const [isDesktop] = useMediaQuery('(min-width: 48em)');
@@ -133,7 +134,7 @@ const LandingPage = () => {
                 shadow="lg"
                 overflow="auto"
               >
-                <Box>History</Box>
+                <Overview />
               </Box>
             </Route>
             <Route path={`${path}/share`}>
