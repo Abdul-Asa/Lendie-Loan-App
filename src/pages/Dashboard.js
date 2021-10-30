@@ -14,6 +14,7 @@ import {
   DrawerCloseButton,
   useDisclosure,
   useMediaQuery,
+  Text,
   Heading,
 } from '@chakra-ui/react';
 import SideBar from '../components/dashboard/SideBar';
@@ -148,7 +149,18 @@ const LandingPage = () => {
                 shadow="lg"
                 overflow="auto"
               >
-                <Box>Spread the love</Box>
+                <Box>
+                  <Text
+                    fontSize="2xl"
+                    color={['red', 'blue', 'purple']}
+                    // color={{ base: 'red', md: 'blue', lg: 'purple' }}
+                  >
+                    Spread the love
+                  </Text>
+                  <Heading fontSize="2xl" color="brand.400">
+                    Spread the love
+                  </Heading>
+                </Box>
               </Box>
             </Route>
             <Route path={`${path}/FAQs`}>
