@@ -41,6 +41,7 @@ const LandingPage = () => {
           placement="left"
           onClose={onClose}
           finalFocusRef={btnRef}
+          
         >
           <DrawerOverlay />
           <DrawerContent>
