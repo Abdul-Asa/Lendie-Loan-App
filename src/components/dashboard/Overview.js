@@ -4,6 +4,7 @@ import {
   Text,
   Table,
   Thead,
+  Flex,
   Tbody,
   Tr,
   Th,
@@ -16,8 +17,12 @@ const Overview = () => {
       <Heading ml={2} fontSize={16}>
         Loan Overview
       </Heading>
-      <Box display="flex">
-        <Box w="400px" borderRadius={5} m="2" p={6} bg="#fff">
+      <Flex
+        display="flex"
+        direction={['column', 'row', 'row']}
+        justify="space-between"
+      >
+        <Box w="full" borderRadius={5} m="2" p={6} bg="#fff">
           <Text fontSize={20}>#10,000</Text>
           <Text fontSize={9}>15/10/2021</Text>
           <Box mt={7} borderRadius="50" w={5} p={3} bg="brand.success"></Box>
@@ -25,35 +30,35 @@ const Overview = () => {
             Active loans
           </Text>
         </Box>
-        <Box w="400px" borderRadius={5} m="2" p={6} bg="#fff">
+        <Box w="full" borderRadius={5} m="2" p={6} bg="#fff">
           <Text fontSize={20}>#10,000</Text>
           <Text fontSize={9}>15/10/2021</Text>
           <Box mt={7} borderRadius="50" w={5} p={3} bg="brand.success"></Box>
           <Text mt={2} fontSize={9}>
-            Total Disbursed
+            Active loans
           </Text>
         </Box>
-        <Box w="400px" borderRadius={5} m="2" p={6} bg="#fff">
-          <Text fontSize={20}>#0.00</Text>
+        <Box w="full" borderRadius={5} m="2" p={6} bg="#fff">
+          <Text fontSize={20}>#10,000</Text>
           <Text fontSize={9}>15/10/2021</Text>
-          <Box mt={7} borderRadius="50" w={5} p={3} bg="lightgrey"></Box>
+          <Box mt={7} borderRadius="50" w={5} p={3} bg="brand.success"></Box>
           <Text mt={2} fontSize={9}>
-            Total Repaid
+            Active loans
           </Text>
         </Box>
-        <Box w="400px" borderRadius={5} m="2" p={6} bg="#fff">
-          <Text fontSize={20}>#0.00</Text>
+        <Box w="full" borderRadius={5} m="2" p={6} bg="#fff">
+          <Text fontSize={20}>#10,000</Text>
           <Text fontSize={9}>15/10/2021</Text>
-          <Box mt={7} borderRadius="50" w={5} p={3} bg="lightgrey"></Box>
+          <Box mt={7} borderRadius="50" w={5} p={3} bg="brand.success"></Box>
           <Text mt={2} fontSize={9}>
-            Partly Repaid
+            Active loans
           </Text>
         </Box>
-      </Box>
+      </Flex>
       <Heading mb={5} mt={5} ml={2} fontSize={16}>
         Loan History
       </Heading>
-      <Box p={3}>
+      <Box p={1} overflowX="auto">
         <Table bg="#fff" variant="simple">
           <Thead bg="#faf8f5">
             <Tr>
@@ -213,7 +218,7 @@ const Overview = () => {
       <Heading mb={5} mt={5} ml={2} fontSize={16}>
         Disbursment Overview
       </Heading>
-      <Box p={3} display="flex">
+      <Flex display="flex" direction={['column', 'row', 'row']} mb={[10, 0]}>
         <Box w="220px" borderRadius={5} mr={14} mt={1} mb={6} p={3} bg="#fff">
           <Box mb={7} display="flex" justifyContent="space-between">
             <Text fontSize={12}>Duration</Text>
@@ -265,7 +270,7 @@ const Overview = () => {
             </Text>
           </Box>
         </Box>
-      </Box>
+      </Flex>
     </Box>
   );
 };
