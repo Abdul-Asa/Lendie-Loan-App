@@ -32,6 +32,9 @@ import SideBar from '../components/dashboard/SideBar';
 import TermsConditions from '../components/dashboard/TermsConditions';
 import FAQ from '../components/dashboard/FAQ';
 import RequestLoan from '../components/dashboard/RequestLoan';
+import SpreadTheLove from '../components/dashboard/SpreadTheLove';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { FiMenu } from 'react-icons/fi';
 import Profile from '../components/dashboard/Profile';
 import Overview from '../components/dashboard/Overview';
 import Settings from '../components/dashboard/Settings';
@@ -74,6 +77,7 @@ const LandingPage = () => {
           placement="left"
           onClose={onClose}
           finalFocusRef={btnRef}
+          
         >
           <DrawerOverlay />
           <DrawerContent>
@@ -135,6 +139,7 @@ const LandingPage = () => {
             </Avatar>
           </HStack>
         </Flex>
+
 
         <Box as="main" p={[3, '6']} bg="#F8F8F8" h="90.5vh">
           <Switch>
