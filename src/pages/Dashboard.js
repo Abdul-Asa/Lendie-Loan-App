@@ -166,7 +166,7 @@ const LandingPage = () => {
                 mr={{ base: 0, md: 10 }}
                 borderStyle="solid"
                 bg="whiteAlpha.900"
-                maxH="650px"
+                maxH="680px"
                 minW="280px"
                 shadow="lg"
                 overflow="auto"

@@ -32,7 +32,7 @@ export const profilePicAction = async (data) => {
 
   return axios
     .patch(
-      `http://lendie-loan-app.herokuapp.com/api/user/profile-pic/${user.id}`,
+      `https://lendie-loan-app.herokuapp.com/api/user/profile-pic/${user.id}`,
       data
     )
     .then((response) => {
@@ -51,7 +51,7 @@ export const personalInfoAction = async (data) => {
     };
     return axios
       .patch(
-        `http://lendie-loan-app.herokuapp.com/api/user/update/${user.id}`,
+        `https://lendie-loan-app.herokuapp.com/api/user/update/${user.id}`,
         data,
         config
       )
@@ -72,7 +72,7 @@ export const paymentInfoAction = async (data) => {
     };
     return axios
       .patch(
-        `http://lendie-loan-app.herokuapp.com/api/user/update-payment/${user.id}`,
+        `https://lendie-loan-app.herokuapp.com/api/user/update-payment/${user.id}`,
         data,
         config
       )
@@ -114,7 +114,7 @@ export const changePasswordAction = async (data) => {
     };
     return axios
       .patch(
-        `http://lendie-loan-app.herokuapp.com/api/user/reset-password/${user.id}`,
+        `https://lendie-loan-app.herokuapp.com/api/user/reset-password/${user.id}`,
         data,
         config
       )

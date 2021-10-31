@@ -26,7 +26,7 @@ const PersonalDetails = () => {
   const [imgPath, setPath] = useState({});
   const [loading, setLoading] = useState(false);
   const [personalDetailsForm, setPersonaldetails] = useState({});
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({ email: '' });
   // const [error, setError] = useState('');
   const toast = useToast();
 
@@ -42,7 +42,6 @@ const PersonalDetails = () => {
         NIN: data.user.NIN,
         BVN: data.user.BVN,
         address: data.user.address,
-        email: data.user.email,
       });
       setPath(data.user.image);
       console.log(data.message);
@@ -200,7 +199,7 @@ const PersonalDetails = () => {
               w={['full', 'sm']}
               placeholder="Email address"
               name="email"
-              value={personalDetailsForm.email}
+              value={user.email}
               isDisabled
             />
           </Box>
