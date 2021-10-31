@@ -102,3 +102,24 @@ export const getUserAction = async () => {
       });
   }
 };
+
+export const changePasswordAction = async (data) => {
+  const user = getUser();
+
+  if (user) {
+    const config = {
+      headers: {
+        token: user.token,
+      },
+    };
+    return axios
+      .patch(
+        `http://lendie-loan-app.herokuapp.com/api/user/reset-password/${user.id}`,
+        data,
+        config
+      )
+      .then((response) => {
+        return response.data;
+      });
+  }
+};
