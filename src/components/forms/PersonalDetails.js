@@ -10,6 +10,8 @@ import {
   Flex,
   IconButton,
   Input,
+  InputGroup,
+  InputLeftAddon,
   HStack,
 } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
@@ -207,16 +209,19 @@ const PersonalDetails = () => {
             <FormLabel color="#8F90A6" fontSize="sm">
               Phone Number
             </FormLabel>
-            <Input
-              borderRadius="md"
-              type="tel"
-              w={['full', 'sm']}
-              placeholder="Phone Number"
-              name="phoneNumber"
-              value={personalDetailsForm.phoneNumber}
-              isDisabled={!editMode}
-              onChange={handleInput}
-            />
+            <InputGroup>
+              <InputLeftAddon children="+234" />
+              <Input
+                borderRadius="md"
+                type="tel"
+                w={['full', 'sm']}
+                placeholder="Phone Number"
+                name="phoneNumber"
+                value={personalDetailsForm.phoneNumber}
+                isDisabled={!editMode}
+                onChange={handleInput}
+              />
+            </InputGroup>
           </Box>
         </Stack>
         <Stack
