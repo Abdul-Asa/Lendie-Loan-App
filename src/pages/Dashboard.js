@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Flex,
   HStack,
+  Spinner,
+  AlertDialog,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  Center,
   Badge,
   Container,
   Avatar,
@@ -14,27 +20,57 @@ import {
   DrawerCloseButton,
   useDisclosure,
   useMediaQuery,
+  Text,
   Heading,
 } from '@chakra-ui/react';
-import SideBar from '../components/dashboard/SideBar';
+import { getUserAction } from '../utils/Actions';
 import { BellIcon } from '../components/icons/icons';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { FiMenu } from 'react-icons/fi';
+import Payments from '../components/dashboard/Payments';
+import SideBar from '../components/dashboard/SideBar';
 import TermsConditions from '../components/dashboard/TermsConditions';
 import FAQ from '../components/dashboard/FAQ';
 import RequestLoan from '../components/dashboard/RequestLoan';
 import SpreadTheLove from '../components/dashboard/SpreadTheLove';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
+import Profile from '../components/dashboard/Profile';
+import Overview from '../components/dashboard/Overview';
+import Settings from '../components/dashboard/Settings';
+import Verification from '../components/dashboard/Verification';
 
 const LandingPage = () => {
   const [isDesktop] = useMediaQuery('(min-width: 48em)');
+  const [user, setUser] = useState({
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    image: '',
+    firstTimeUser: true,
+  });
+  const [loading, setLoading] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   let { path } = useRouteMatch();
 
+  useEffect(() => {
+    const User = getUserAction();
+    User.then((data) => {
+      setUser(data.user);
+      setLoading(false);
+    }).catch((err) => {
+      console.log(err);
+    });
+    return () => {
+      setLoading(false);
+    };
+  }, [loading]);
+
   return (
     <Box minH="100vh" transition="0.3s ease" as="section" overflow="hidden">
       {isDesktop ? (
-        <SideBar />
+        <SideBar user={user} />
       ) : (
         <Drawer
           isOpen={isOpen}
@@ -46,7 +82,7 @@ const LandingPage = () => {
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton zIndex="overlay" color="whiteAlpha.900" />
-            <SideBar w="full" />
+            <SideBar w="full" user={user} />
           </DrawerContent>
         </Drawer>
       )}
@@ -90,54 +126,157 @@ const LandingPage = () => {
 
             <Container maxW="200px" display={['none', 'flex', 'flex']}>
               <Heading color="brand.300" fontSize="20px">
-                Floppa
+                {user.firstName}
               </Heading>
             </Container>
-            <Avatar size="md" name="Floppa" display={['none', 'flex', 'flex']}>
+            <Avatar
+              size="md"
+              name={user.firstName}
+              src={user.image}
+              display={['none', 'flex', 'flex']}
+            >
               <AvatarBadge boxSize="15px" bg="#0063F7" />
             </Avatar>
           </HStack>
         </Flex>
 
-        <Box as="main" p={[3, '8']} bg="#F8F8F8" h="90.5vh">
-          <Box
-            ml={{ base: 0, md: '250px' }}
-            mr={{ base: 0, md: 10 }}
-            borderStyle="solid"
-            bg="whiteAlpha.900"
-            maxH="650px"
-            minW="280px"
-            shadow="lg"
-            overflow="auto"
-          >
-            <Switch>
-              <Route exact path={`${path}/`}>
-                {/* <Box>Request loan</Box> */}
-                <RequestLoan />
-              </Route>
-              <Route path={`${path}/profile`}>
-                <Box>Profile</Box>
-              </Route>
-              <Route path={`${path}/settings`}>
-                <Box>Settings</Box>
-              </Route>
-              <Route path={`${path}/overview`}>
-                <Box>History</Box>
-              </Route>
-              <Route path={`${path}/share`}>
-                <Box>Spread the love</Box>
-                <SpreadTheLove />
-              </Route>
-              <Route path={`${path}/FAQs`}>
+
+        <Box as="main" p={[3, '6']} bg="#F8F8F8" h="90.5vh">
+          <Switch>
+            <Route exact path={`${path}/`}>
+              {/* <Box>Request loan</Box> */}
+
+              <RequestLoan user={user} />
+            </Route>
+            <Route path={`${path}/profile`}>
+              <Profile />
+            </Route>
+            <Route path={`${path}/settings`}>
+              <Box
+                ml={{ base: 0, md: '250px' }}
+                mr={{ base: 0, md: 10 }}
+                borderStyle="solid"
+                bg="whiteAlpha.900"
+                minH="650px"
+                minW="280px"
+                shadow="lg"
+                overflow="auto"
+              >
+                <Settings />
+              </Box>
+            </Route>
+            <Route path={`${path}/overview`}>
+              <Box
+                ml={{ base: 0, md: '250px' }}
+                mr={{ base: 0, md: 10 }}
+                borderStyle="solid"
+                bg="whiteAlpha.900"
+                maxH="680px"
+                minW="280px"
+                shadow="lg"
+                overflow="auto"
+              >
+                <Overview />
+              </Box>
+            </Route>
+            <Route path={`${path}/share`}>
+              <Box
+                ml={{ base: 0, md: '250px' }}
+                mr={{ base: 0, md: 10 }}
+                borderStyle="solid"
+                bg="whiteAlpha.900"
+                maxH="680px"
+                minW="280px"
+                shadow="lg"
+                overflow="auto"
+              >
+                <Box>
+                  <Text
+                    fontSize="2xl"
+                    color={['red', 'blue', 'purple']}
+                    // color={{ base: 'red', md: 'blue', lg: 'purple' }}
+                  >
+                    Spread the love
+                  </Text>
+                  <Heading fontSize="2xl" color="brand.400">
+                    Spread the love
+                  </Heading>
+                </Box>
+              </Box>
+            </Route>
+            <Route path={`${path}/FAQs`}>
+              <Box
+                ml={{ base: 0, md: '250px' }}
+                mr={{ base: 0, md: 10 }}
+                pb={{ base: 20, md: 3 }}
+                borderStyle="solid"
+                bg="whiteAlpha.900"
+                maxH="680px"
+                minW="280px"
+                shadow="lg"
+                overflow="auto"
+              >
                 <FAQ />
-              </Route>
-              <Route path={`${path}/terms&conditions`}>
+              </Box>
+            </Route>
+            <Route path={`${path}/terms&conditions`}>
+              <Box
+                ml={{ base: 0, md: '250px' }}
+                mr={{ base: 0, md: 10 }}
+                pb={{ base: 20, md: 3 }}
+                borderStyle="solid"
+                bg="whiteAlpha.900"
+                maxH="680px"
+                minW="280px"
+                shadow="lg"
+                overflow="auto"
+              >
                 <TermsConditions />
-              </Route>
-            </Switch>
-          </Box>
+              </Box>
+            </Route>
+            <Route path={`${path}/verification`}>
+              <Box
+                ml={{ base: 0, md: '250px' }}
+                mr={{ base: 0, md: 10 }}
+                borderStyle="solid"
+                bg="whiteAlpha.900"
+                minH="650px"
+                minW="280px"
+                shadow="lg"
+                overflow="auto"
+              >
+                <Verification user={user} />
+              </Box>
+            </Route>
+            <Route path={`${path}/payments`}>
+              <Box
+                ml={{ base: 0, md: '250px' }}
+                mr={{ base: 0, md: 10 }}
+                borderStyle="solid"
+                bg="whiteAlpha.900"
+                maxH="680px"
+                minW="280px"
+                shadow="lg"
+                overflow="auto"
+              >
+                <Payments />
+              </Box>
+            </Route>
+          </Switch>
         </Box>
       </Box>
+      <AlertDialog isOpen={loading} isCentered>
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              <Center>
+                <Text mx="20px">Loading</Text>
+                <Spinner />
+              </Center>
+            </AlertDialogHeader>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
     </Box>
   );
 };
