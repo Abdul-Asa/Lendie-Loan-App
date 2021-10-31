@@ -23,22 +23,26 @@ import {
   Text,
   Heading,
 } from '@chakra-ui/react';
-import SideBar from '../components/dashboard/SideBar';
+import { getUserAction } from '../utils/Actions';
 import { BellIcon } from '../components/icons/icons';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { FiMenu } from 'react-icons/fi';
+import Payments from '../components/dashboard/Payments';
+import SideBar from '../components/dashboard/SideBar';
 import TermsConditions from '../components/dashboard/TermsConditions';
 import FAQ from '../components/dashboard/FAQ';
 import RequestLoan from '../components/dashboard/RequestLoan';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import { FiMenu } from 'react-icons/fi';
 import Profile from '../components/dashboard/Profile';
 import Overview from '../components/dashboard/Overview';
-import { getUserAction } from '../utils/Actions';
 import Settings from '../components/dashboard/Settings';
+import Verification from '../components/dashboard/Verification';
 
 const LandingPage = () => {
   const [isDesktop] = useMediaQuery('(min-width: 48em)');
   const [user, setUser] = useState({
     firstName: '',
+    lastName: '',
+    phoneNumber: '',
     image: '',
     firstTimeUser: true,
   });
@@ -132,7 +136,7 @@ const LandingPage = () => {
           </HStack>
         </Flex>
 
-        <Box as="main" p={[3, '8']} bg="#F8F8F8" h="90.5vh">
+        <Box as="main" p={[3, '6']} bg="#F8F8F8" h="90.5vh">
           <Switch>
             <Route exact path={`${path}/`}>
               {/* <Box>Request loan</Box> */}
@@ -223,6 +227,34 @@ const LandingPage = () => {
                 overflow="auto"
               >
                 <TermsConditions />
+              </Box>
+            </Route>
+            <Route path={`${path}/verification`}>
+              <Box
+                ml={{ base: 0, md: '250px' }}
+                mr={{ base: 0, md: 10 }}
+                borderStyle="solid"
+                bg="whiteAlpha.900"
+                minH="650px"
+                minW="280px"
+                shadow="lg"
+                overflow="auto"
+              >
+                <Verification user={user} />
+              </Box>
+            </Route>
+            <Route path={`${path}/payments`}>
+              <Box
+                ml={{ base: 0, md: '250px' }}
+                mr={{ base: 0, md: 10 }}
+                borderStyle="solid"
+                bg="whiteAlpha.900"
+                maxH="680px"
+                minW="280px"
+                shadow="lg"
+                overflow="auto"
+              >
+                <Payments />
               </Box>
             </Route>
           </Switch>
