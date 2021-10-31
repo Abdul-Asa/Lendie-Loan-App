@@ -215,7 +215,7 @@ const SignupForm = () => {
                 />{' '}
                 <Flex
                   mt="7px"
-                  fontSize="12px"
+                  fontSize="10px"
                   color={
                     errorType.type === 'error' ? 'brand.error' : 'brand.info'
                   }
@@ -250,7 +250,7 @@ const SignupForm = () => {
                 />{' '}
                 <Flex
                   mt="7px"
-                  fontSize="12px"
+                  fontSize="10px"
                   color={
                     errorType.type === 'error' ? 'brand.error' : 'brand.info'
                   }
@@ -291,7 +291,7 @@ const SignupForm = () => {
                 </Select>
                 <Flex
                   mt="7px"
-                  fontSize="12px"
+                  fontSize="10px"
                   color={
                     errorType.type === 'error' ? 'brand.error' : 'brand.info'
                   }
@@ -328,7 +328,7 @@ const SignupForm = () => {
                 />{' '}
                 <Flex
                   mt="7px"
-                  fontSize="12px"
+                  fontSize="10px"
                   color={
                     errorType.type === 'error' ? 'brand.error' : 'brand.info'
                   }
@@ -389,7 +389,7 @@ const SignupForm = () => {
 
                 <Flex
                   mt="7px"
-                  fontSize="12px"
+                  fontSize="10px"
                   color={
                     errorType.type === 'error' ? 'brand.error' : 'brand.info'
                   }
@@ -424,7 +424,7 @@ const SignupForm = () => {
                 />{' '}
                 <Flex
                   mt="7px"
-                  fontSize="12px"
+                  fontSize="10px"
                   color={
                     errorType.type === 'error' ? 'brand.error' : 'brand.info'
                   }
@@ -470,7 +470,7 @@ const SignupForm = () => {
                 </InputGroup>
                 <Flex
                   mt="7px"
-                  fontSize="12px"
+                  fontSize="10px"
                   color={
                     errorType.type === 'error' ? 'brand.error' : 'brand.info'
                   }
@@ -516,7 +516,7 @@ const SignupForm = () => {
                 </InputGroup>
                 <Flex
                   mt="7px"
-                  fontSize="12px"
+                  fontSize="10px"
                   color={
                     errorType.type === 'error' ? 'brand.error' : 'brand.info'
                   }
@@ -550,7 +550,7 @@ const SignupForm = () => {
                 </CheckboxGroup>{' '}
                 <Flex
                   mt="7px"
-                  fontSize="12px"
+                  fontSize="10px"
                   color={
                     errorType.type === 'error' ? 'brand.error' : 'brand.info'
                   }

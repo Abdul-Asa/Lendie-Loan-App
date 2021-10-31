@@ -89,7 +89,7 @@ function About() {
                   boxSize={['20px', '16px', '30px']}
                 />
                 <Text color="#0A2472" fontSize={['14', '16']} pt={1} ml={4}>
-                  No hidden fees{' '}
+                  Get Money in minutes{' '}
                 </Text>
               </Flex>
               <Flex align="center">

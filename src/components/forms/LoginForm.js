@@ -100,7 +100,7 @@ const LoginForm = () => {
           />{' '}
           <Flex
             mt="7px"
-            fontSize="12px"
+            fontSize="10px"
             color={errorType.emailInv ? 'brand.error' : 'brand.info'}
             align="center"
           >
@@ -137,8 +137,8 @@ const LoginForm = () => {
               </Button>
             </InputRightElement>
           </InputGroup>
-          <Flex justify="space-between" fontSize="12px" mt="7px">
-            <Flex color="brand.error" align="center">
+          <Flex justify="space-between" mt="7px">
+            <Flex color="brand.error" align="center" fontSize="10px">
               {errorType.type === 'error' && (
                 <>
                   <WarningIcon mr={2} />
@@ -147,7 +147,7 @@ const LoginForm = () => {
               )}{' '}
             </Flex>
 
-            <Text as="a" href="/signup" color="brand.300">
+            <Text as="a" href="/#ContactUs" fontSize="12px" color="brand.300">
               Forgot password?
             </Text>
           </Flex>

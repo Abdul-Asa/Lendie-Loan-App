@@ -32,7 +32,11 @@ export const profilePicAction = async (data) => {
 
   return axios
     .patch(
+<<<<<<< HEAD
       `https://lendie-loan-app.herokuapp.com/api/user/profile-pic/${user.id}`,
+=======
+      `http://lendie-loan-app.herokuapp.com/api/user/profile-pic/${user.id}`,
+>>>>>>> 81123fc8fe8b5f2937625523c62998790a97b758
       data
     )
     .then((response) => {
@@ -51,7 +55,11 @@ export const personalInfoAction = async (data) => {
     };
     return axios
       .patch(
+<<<<<<< HEAD
         `https://lendie-loan-app.herokuapp.com/api/user/update/${user.id}`,
+=======
+        `http://lendie-loan-app.herokuapp.com/api/user/update/${user.id}`,
+>>>>>>> 81123fc8fe8b5f2937625523c62998790a97b758
         data,
         config
       )
@@ -72,7 +80,11 @@ export const paymentInfoAction = async (data) => {
     };
     return axios
       .patch(
+<<<<<<< HEAD
         `https://lendie-loan-app.herokuapp.com/api/user/update-payment/${user.id}`,
+=======
+        `http://lendie-loan-app.herokuapp.com/api/user/update-payment/${user.id}`,
+>>>>>>> 81123fc8fe8b5f2937625523c62998790a97b758
         data,
         config
       )
@@ -114,7 +126,11 @@ export const changePasswordAction = async (data) => {
     };
     return axios
       .patch(
+<<<<<<< HEAD
         `https://lendie-loan-app.herokuapp.com/api/user/reset-password/${user.id}`,
+=======
+        `http://lendie-loan-app.herokuapp.com/api/user/reset-password/${user.id}`,
+>>>>>>> 81123fc8fe8b5f2937625523c62998790a97b758
         data,
         config
       )

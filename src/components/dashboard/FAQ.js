@@ -14,19 +14,14 @@ import {
 
 function FAQs() {
   return (
-    <Stack m={[2, 10, 24]} py={[16, 0, 0]} alignItems="center">
-      <Heading
-        color="#0A2472"
-        fontSize="22px"
-        fontWeight="bold"
-        textAlign="center"
-      >
+    <Stack p={[6, 10, 14]} color="brand.400">
+      <Heading fontSize={['2xl', '3xl']} fontWeight="bold">
         Frequently asked Questions
       </Heading>
-      <Text color="#00072D" textAlign="center">
+      <Text>
         Our customers are frequently asking these questions about loan
       </Text>
-      <Accordion allowToggle color="#0A2472" w={['95%', '70%', '50%']} pt={12}>
+      <Accordion allowToggle color="#0A2472" w={['95%', '750%', '70%']} pt={12}>
         <AccordionItem border="none" pb={8}>
           <AccordionButton
             borderRadius="lg"
@@ -36,8 +31,11 @@ function FAQs() {
             _expanded={{ borderBottomRadius: 'none', borderBottom: '0' }}
             _hover={{ bgColor: '#E5F3FF' }}
           >
-            <Box flex="1" textAlign="left" p="10px 14px">
-              <Heading fontSize="20px"> Am I eligible for lendie loan</Heading>
+            <Box flex="1" textAlign="left" p={[1, '10px 14px']}>
+              <Heading fontSize={['lg', 'xl']}>
+                {' '}
+                Am I eligible for lendie loan
+              </Heading>
             </Box>
             <AccordionIcon />
           </AccordionButton>
@@ -67,8 +65,8 @@ function FAQs() {
             _expanded={{ borderBottomRadius: 'none', borderBottom: '0' }}
             _hover={{ bgColor: '#E5F3FF' }}
           >
-            <Box flex="1" textAlign="left" p="10px 14px">
-              <Heading fontSize="20px"> How much can i borrow</Heading>
+            <Box flex="1" textAlign="left" p={[1, '10px 14px']}>
+              <Heading fontSize={['lg', 'xl']}> How much can i borrow</Heading>
             </Box>
             <AccordionIcon />
           </AccordionButton>
@@ -88,8 +86,8 @@ function FAQs() {
             _expanded={{ borderBottomRadius: 'none', borderBottom: '0' }}
             _hover={{ bgColor: '#E5F3FF' }}
           >
-            <Box flex="1" textAlign="left" p="10px 14px">
-              <Heading fontSize="20px">
+            <Box flex="1" textAlign="left" p={[1, '10px 14px']}>
+              <Heading fontSize={['lg', 'xl']}>
                 {' '}
                 What documents do i need to apply
               </Heading>
@@ -109,8 +107,8 @@ function FAQs() {
             _expanded={{ borderBottomRadius: 'none', borderBottom: '0' }}
             _hover={{ bgColor: '#E5F3FF' }}
           >
-            <Box flex="1" textAlign="left" p="10px 14px">
-              <Heading fontSize="20px">
+            <Box flex="1" textAlign="left" p={[1, '10px 14px']}>
+              <Heading fontSize={['lg', 'xl']}>
                 {' '}
                 Why am i limited to a cash of 10k?
               </Heading>
@@ -136,8 +134,10 @@ function FAQs() {
             _expanded={{ borderBottomRadius: 'none', borderBottom: '0' }}
             _hover={{ bgColor: '#E5F3FF' }}
           >
-            <Box flex="1" textAlign="left" p="10px 14px">
-              <Heading fontSize="20px">Why does Lendie need my BVN?</Heading>
+            <Box flex="1" textAlign="left" p={[1, '10px 14px']}>
+              <Heading fontSize={['lg', 'xl']}>
+                Why does Lendie need my BVN?
+              </Heading>
             </Box>
             <AccordionIcon />
           </AccordionButton>

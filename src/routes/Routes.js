@@ -36,7 +36,7 @@ const Routes = () => {
         onSuccess={<ConfirmationSuccess />}
         onFailure={<ConfirmationFailure />}
       />
-      <PrivateRoute>
+      <PrivateRoute path="/user/home">
         <Dashboard />
       </PrivateRoute>
     </Switch>
