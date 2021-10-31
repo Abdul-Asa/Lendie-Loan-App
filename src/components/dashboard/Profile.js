@@ -43,7 +43,7 @@ const Profile = () => {
             <TabPanel>
               <PersonalDetails />
             </TabPanel>
-            <TabPanel>
+            <TabPanel id="payment">
               <CardDetails />
             </TabPanel>
           </TabPanels>

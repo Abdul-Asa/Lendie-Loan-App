@@ -13,6 +13,13 @@ import {
   FormControl,
   FormLabel,
   FormHelperText,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
   Select,
   Text,
   Button,
@@ -21,9 +28,14 @@ import {
   useRadio,
   useRadioGroup,
 } from '@chakra-ui/react';
+import { useRouteMatch, useHistory } from 'react-router-dom';
 
 //
 function RequestLoan({ user }) {
+  let { path } = useRouteMatch();
+  const history = useHistory();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   function RadioCard(props) {
     const { getInputProps, getCheckboxProps } = useRadio(props);
 
@@ -144,10 +156,9 @@ function RequestLoan({ user }) {
     <Stack ml={{ base: 0, md: '250px' }} mr={{ base: 0, md: 10 }}>
       {user.firstTimeUser && <Info />}
       <Box
-        mt="6"
         p={[3, 8, 10]}
         bg="whiteAlpha.900"
-        maxH="610px"
+        maxH="600px"
         shadow="lg"
         overflow="auto"
       >
@@ -160,7 +171,7 @@ function RequestLoan({ user }) {
           fontStyle="normal"
           fontSize="30px"
           fontWeight="600"
-          pt={4}
+          pt={2}
         >
           Request Loan
         </Heading>
@@ -417,7 +428,29 @@ function RequestLoan({ user }) {
               </InputGroup>
             </FormControl>
           </Flex>
-
+          {user.saveCard && (
+            <FormControl mt={[3, 0]} pl={1} pt={6}>
+              <FormLabel color="#00072D" fontSize="14px">
+                Disbursment Account
+              </FormLabel>
+              <InputGroup>
+                <Input
+                  borderColor="#C7C9D9"
+                  maxW="400px"
+                  isReadOnly
+                  value={user.accountNumber}
+                />
+              </InputGroup>
+              <FormHelperText
+                color="#0063F7"
+                fontSize="14px"
+                as="a"
+                href="/user/home/profile/#payment"
+              >
+                Use a different bank account
+              </FormHelperText>
+            </FormControl>
+          )}
           <Button
             mt={10}
             w={['full', '30%']}
@@ -427,11 +460,45 @@ function RequestLoan({ user }) {
               bgColor: '#0E6BA8',
             }}
             bgColor="brand.300"
+            onClick={() => {
+              if (!user.saveDetails) {
+                history.push(`${path}verification`);
+              } else {
+                if (!user.saveCard) {
+                  history.push(`${path}payments`);
+                } else {
+                  onOpen();
+                }
+              }
+            }}
           >
             Request Loan
           </Button>
         </Box>
       </Box>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+        closeOnOverlayClick={false}
+      >
+        <ModalOverlay />
+        <ModalContent p={4}>
+          <ModalHeader textAlign="center" py={8}>
+            <Heading>Success</Heading>
+          </ModalHeader>
+          <ModalCloseButton
+            color="white"
+            bg="red"
+            rounded="full"
+            _hover={{ bg: 'red.400' }}
+            onClick={() => history.push(`${path}overview`)}
+          />
+          <ModalBody pb={14} textAlign="center">
+            Your loan request has been submitted for review
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Stack>
   );
 }
