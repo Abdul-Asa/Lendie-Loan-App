@@ -122,12 +122,21 @@ function TalkToUs() {
           ></Textarea>
           <Center w="full" mt={4}>
             <Button
-              size="lg"
-              color="brand.300"
               variant="outline"
               bg="#E5F3FF"
               w="40%"
               padding="14px 32px"
+              size="lg"
+              color="whiteAlpha.900"
+              _hover={{
+                bgColor: '#0E6BA8',
+              }}
+              _disabled={{
+                bgColor: 'grey',
+                cursor: 'not-allowed',
+                _hover: { bgColor: 'grey' },
+              }}
+              bgColor="brand.300"
               onClick={onSubmit}
               isLoading={loading}
               isDisabled={valid}
