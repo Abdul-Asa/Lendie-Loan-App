@@ -21,6 +21,7 @@ import { BellIcon } from '../components/icons/icons';
 import TermsConditions from '../components/dashboard/TermsConditions';
 import FAQ from '../components/dashboard/FAQ';
 import RequestLoan from '../components/dashboard/RequestLoan';
+import SpreadTheLove from '../components/dashboard/SpreadTheLove';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 
@@ -111,7 +112,7 @@ const LandingPage = () => {
             <Switch>
               <Route exact path={`${path}/`}>
                 {/* <Box>Request loan</Box> */}
-              <RequestLoan  />
+                <RequestLoan />
               </Route>
               <Route path={`${path}/profile`}>
                 <Box>Profile</Box>
@@ -124,6 +125,7 @@ const LandingPage = () => {
               </Route>
               <Route path={`${path}/share`}>
                 <Box>Spread the love</Box>
+                <SpreadTheLove />
               </Route>
               <Route path={`${path}/FAQs`}>
                 <FAQ />
