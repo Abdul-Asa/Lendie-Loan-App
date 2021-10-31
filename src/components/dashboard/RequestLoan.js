@@ -445,7 +445,7 @@ function RequestLoan({ user }) {
                 color="#0063F7"
                 fontSize="14px"
                 as="a"
-                href="/user/home/profile/#payment"
+                href="/user/home/payments"
               >
                 Use a different bank account
               </FormHelperText>
