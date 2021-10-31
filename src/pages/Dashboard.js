@@ -33,6 +33,7 @@ import { FiMenu } from 'react-icons/fi';
 import Profile from '../components/dashboard/Profile';
 import Overview from '../components/dashboard/Overview';
 import { getUserAction } from '../utils/Actions';
+import Settings from '../components/dashboard/Settings';
 
 const LandingPage = () => {
   const [isDesktop] = useMediaQuery('(min-width: 48em)');
@@ -147,12 +148,12 @@ const LandingPage = () => {
                 mr={{ base: 0, md: 10 }}
                 borderStyle="solid"
                 bg="whiteAlpha.900"
-                maxH="650px"
+                minH="650px"
                 minW="280px"
                 shadow="lg"
                 overflow="auto"
               >
-                <Box>Settings</Box>
+                <Settings />
               </Box>
             </Route>
             <Route path={`${path}/overview`}>
