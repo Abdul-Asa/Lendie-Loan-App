@@ -32,12 +32,13 @@ import SideBar from '../components/dashboard/SideBar';
 import TermsConditions from '../components/dashboard/TermsConditions';
 import FAQ from '../components/dashboard/FAQ';
 import RequestLoan from '../components/dashboard/RequestLoan';
+import SpreadTheLove from '../components/dashboard/SpreadTheLove';
 import Profile from '../components/dashboard/Profile';
 import Overview from '../components/dashboard/Overview';
 import Settings from '../components/dashboard/Settings';
 import Verification from '../components/dashboard/Verification';
 
-const LandingPage = () => {
+const Dashboard = () => {
   const [isDesktop] = useMediaQuery('(min-width: 48em)');
   const [user, setUser] = useState({
     firstName: '',
@@ -180,23 +181,12 @@ const LandingPage = () => {
                 mr={{ base: 0, md: 10 }}
                 borderStyle="solid"
                 bg="whiteAlpha.900"
-                maxH="680px"
+                minH="680px"
                 minW="280px"
                 shadow="lg"
                 overflow="auto"
               >
-                <Box>
-                  <Text
-                    fontSize="2xl"
-                    color={['red', 'blue', 'purple']}
-                    // color={{ base: 'red', md: 'blue', lg: 'purple' }}
-                  >
-                    Spread the love
-                  </Text>
-                  <Heading fontSize="2xl" color="brand.400">
-                    Spread the love
-                  </Heading>
-                </Box>
+                <SpreadTheLove />
               </Box>
             </Route>
             <Route path={`${path}/FAQs`}>
@@ -276,4 +266,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default Dashboard;
