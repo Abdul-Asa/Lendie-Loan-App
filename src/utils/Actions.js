@@ -185,3 +185,24 @@ export const deleteLoanAction = async (data) => {
       });
   }
 };
+
+export const repayLoanAction = async (data) => {
+  const user = getUser();
+
+  if (user) {
+    const config = {
+      headers: {
+        token: user.token,
+      },
+    };
+    return axios
+      .patch(
+        `https://lendie-loan-app.herokuapp.com/api/loan/repay-loan/${user.id}`,
+        data,
+        config
+      )
+      .then((response) => {
+        return response.data;
+      });
+  }
+};
