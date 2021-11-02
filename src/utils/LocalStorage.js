@@ -13,3 +13,17 @@ export const removeUser = () => {
 export const setUser = (data) => {
   return localStorage.setItem('currentUser', JSON.stringify(data));
 };
+
+export const storeCart = (data) => {
+  return localStorage.setItem('cart', JSON.stringify(data));
+};
+
+export const getCart = (data) => {
+  const cart = JSON.parse(localStorage.getItem('cart'));
+  if (cart) return cart;
+  else return null;
+};
+
+export const deleteCart = () => {
+  return localStorage.removeItem('cart');
+};

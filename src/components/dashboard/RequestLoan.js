@@ -23,15 +23,20 @@ import {
   Select,
   Text,
   Button,
+  useToast,
   InputGroup,
   InputLeftElement,
   useRadio,
   useRadioGroup,
 } from '@chakra-ui/react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
+import { storeCart, getCart, deleteCart } from '../../utils/LocalStorage';
+import { requestLoanAction } from '../../utils/Actions';
 
 //
 function RequestLoan({ user }) {
+  const toast = useToast();
+  const [buttonLoad, setButtonLoad] = useState(false);
   let { path } = useRouteMatch();
   const history = useHistory();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -130,11 +135,15 @@ function RequestLoan({ user }) {
       });
     }
   };
-  const [loanCalculator, setLoanCalc] = useState({
-    amount: 0,
-    time: 4,
-    purpose: '',
-  });
+  let cart = getCart();
+  if (!cart) {
+    cart = {
+      amount: 0,
+      time: 4,
+      purpose: '',
+    };
+  }
+  const [loanCalculator, setLoanCalc] = useState(cart);
   const handleInput = (e) => {
     if (typeof e === 'number') {
       setLoanCalc((inp) => {
@@ -151,6 +160,31 @@ function RequestLoan({ user }) {
         return { ...inputDetails, [name]: value };
       });
     }
+  };
+
+  const submitForm = () => {
+    setButtonLoad(true);
+    requestLoanAction(loanCalculator)
+      .then((response) => {
+        let status = 'error';
+        let message = response.message;
+        let title = 'Error';
+        if (response.message === 'success') {
+          onOpen();
+          deleteCart();
+        } else {
+          toast({
+            title: title,
+            position: 'top',
+            description: message,
+            status: status,
+            duration: 5000,
+            isClosable: true,
+          });
+        }
+        setButtonLoad(false);
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <Stack ml={{ base: 0, md: '250px' }} mr={{ base: 0, md: 10 }}>
@@ -328,7 +362,7 @@ function RequestLoan({ user }) {
             </Select>
           </FormControl>
         </Flex>
-        <Box pl={1} pt={8} mb={[32, 28, 0]}>
+        <Box pl={1} pt={8} mb={[32, 28, 20]}>
           <FormControl>
             <Text color="#333333">Loan Period</Text>
             {editable.time ? (
@@ -459,15 +493,18 @@ function RequestLoan({ user }) {
             _hover={{
               bgColor: '#0E6BA8',
             }}
+            _loading={buttonLoad}
             bgColor="brand.300"
             onClick={() => {
               if (!user.saveDetails) {
+                storeCart(loanCalculator);
                 history.push(`${path}verification`);
               } else {
                 if (!user.saveCard) {
+                  storeCart(loanCalculator);
                   history.push(`${path}payments`);
                 } else {
-                  onOpen();
+                  submitForm();
                 }
               }
             }}
