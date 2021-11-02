@@ -146,13 +146,7 @@ const Verification = ({ user }) => {
             <FormLabel color="#8F90A6" fontSize="sm">
               Upload any Goverment issued ID
             </FormLabel>
-            <Input
-              w={['full', 'sm']}
-              borderRadius="md"
-              type="file"
-              name="ID"
-              onChange={handleInput}
-            />
+            <Input w={['full', 'sm']} borderRadius="md" type="file" name="ID" />
           </Box>
         </Stack>
         <CheckboxGroup>
