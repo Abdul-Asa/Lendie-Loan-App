@@ -4,7 +4,12 @@ import {
   Text,
   Table,
   Thead,
+  useDisclosure,
   Flex,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  FormLabel,
   Tbody,
   AlertDialog,
   AlertDialogBody,
@@ -12,6 +17,13 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   AlertDialogContent,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
   Button,
   Tr,
   Center,
@@ -19,14 +31,25 @@ import {
   Tooltip,
   Th,
   Td,
+  Alert,
 } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
 import React, { useEffect, useState } from 'react';
-import { getLoanAction, deleteLoanAction } from '../../utils/Actions';
+import {
+  getLoanAction,
+  deleteLoanAction,
+  repayLoanAction,
+} from '../../utils/Actions';
 
 const Overview = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const onClose = () => setIsOpen(false);
+  const [repayment, setRepayment] = useState(0);
+  const [error, setError] = useState({ message: '' });
+  const [disabled, setDisabled] = useState(false);
+  const [buttonLoad, setButtonLoad] = useState(false);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [open, setIsOpen] = useState(false);
+  const onclose = () => setIsOpen(false);
   const cancelRef = React.useRef();
   const [loanInfo, setLoanInfo] = useState({
     _id: '',
@@ -131,11 +154,8 @@ const Overview = () => {
         <Box w="full" borderRadius={5} m="2" p={6} bg="#fff">
           <Text fontSize={20}>
             {loanInfo.activeLoan
-              ? '₦' +
-                (sum + loanInfo.activeLoan.amount)
-                  .toLocaleString('en-US')
-                  .toLocaleString('en-US')
-              : '₦' + sum}
+              ? '₦' + (sum + loanInfo.activeLoan.amount).toLocaleString('en-US')
+              : '₦' + sum.toLocaleString('en-US')}
           </Text>
           <Text fontSize={9}> Since : {stringDate(loanInfo.createdAt)}</Text>
           <Box mt={7} borderRadius="50" w={5} p={3} bg="brand.success"></Box>
@@ -240,9 +260,9 @@ const Overview = () => {
                     <Text
                       color="#fff"
                       bg={
-                        loanInfo.activeLoan.status === 'Pending'
+                        loanInfo.activeLoan.status === 'Disbursed'
                           ? 'brand.info'
-                          : 'brand.warning'
+                          : 'brand.error'
                       }
                       textAlign="center"
                       borderRadius="5"
@@ -278,9 +298,9 @@ const Overview = () => {
           </Tbody>
         </Table>
         <AlertDialog
-          isOpen={isOpen}
+          isOpen={open}
           leastDestructiveRef={cancelRef}
-          onClose={onClose}
+          onClose={onclose}
           size="sm"
         >
           <AlertDialogOverlay>
@@ -288,13 +308,12 @@ const Overview = () => {
               <AlertDialogHeader fontSize="lg" fontWeight="bold">
                 Delete Loan request
               </AlertDialogHeader>
-
               <AlertDialogBody>
                 Are you sure? You can't undo this action afterwards.
               </AlertDialogBody>
 
               <AlertDialogFooter>
-                <Button ref={cancelRef} onClick={onClose}>
+                <Button ref={cancelRef} onClick={onclose}>
                   Cancel
                 </Button>
                 <Button
@@ -394,7 +413,7 @@ const Overview = () => {
             </Text>
             <Text fontSize={23} color="gold">
               {loanInfo.activeLoan
-                ? stringDate(loanInfo.activeLoan.loanTaken)
+                ? stringDate(loanInfo.activeLoan.repaymentDate)
                 : 'N/A'}
             </Text>
           </Box>
@@ -409,9 +428,91 @@ const Overview = () => {
               bgColor: '#0E6BA8',
             }}
             bgColor="brand.300"
+            // disabled={!loanInfo.activeLoan}
+            onClick={onOpen}
           >
             Repay loan
           </Button>
+
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Repay Loan</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Box p={4}>
+                  <FormLabel color="#00072D" fontSize="14px">
+                    Total amount owed:{' '}
+                    {loanInfo.activeLoan
+                      ? '₦' +
+                        loanInfo.activeLoan.totalLoan.toLocaleString('en-US')
+                      : 'N/A'}
+                  </FormLabel>
+                  <FormLabel color="#00072D" fontSize="14px">
+                    Amount left to be paid:{' '}
+                    {loanInfo.activeLoan
+                      ? '₦' +
+                        (
+                          loanInfo.activeLoan.totalLoan -
+                          loanInfo.activeLoan.amountRepaid
+                        ).toLocaleString('en-US')
+                      : 'N/A'}
+                  </FormLabel>
+                  <FormLabel color="#00072D" fontSize="14px" mt={4}>
+                    How much do you want to repay?
+                  </FormLabel>
+                  <Flex justify="space-between" maxW="400px">
+                    <InputGroup>
+                      <InputLeftElement
+                        pointerEvents="none"
+                        color="gray"
+                        children="₦ |"
+                      />
+                      <Input
+                        type="number"
+                        min={1000}
+                        max={500000}
+                        value={repayment}
+                        onChange={(e) => {
+                          setRepayment(Number(e.target.value));
+                        }}
+                        name="amount"
+                      />
+                    </InputGroup>
+                  </Flex>
+                </Box>
+                {error.message && <Alert>{error.message}</Alert>}
+              </ModalBody>
+
+              <ModalFooter>
+                <Button variant="ghost" onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button
+                  colorScheme="blue"
+                  mr={3}
+                  isDisabled={disabled}
+                  isLoading={buttonLoad}
+                  onClick={() => {
+                    setButtonLoad(true);
+                    repayLoanAction({
+                      loanId: loanInfo._id,
+                      amountRepaid: repayment,
+                    }).then((response) => {
+                      setError(response);
+                      setButtonLoad(false);
+                      if (response.message === 'Loan has been fully repaid') {
+                        setDisabled(true);
+                      }
+                      setLoading(true);
+                    });
+                  }}
+                >
+                  Repay loan
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
         </Center>
       </Flex>
     </Box>
@@ -420,6 +521,4 @@ const Overview = () => {
 
 export default Overview;
 
-//Update firstTimeUser
 //pay loan page
-//delete loan
