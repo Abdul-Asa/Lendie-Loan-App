@@ -123,3 +123,44 @@ export const changePasswordAction = async (data) => {
       });
   }
 };
+
+export const requestLoanAction = async (data) => {
+  const user = getUser();
+
+  if (user) {
+    const config = {
+      headers: {
+        token: user.token,
+      },
+    };
+    return axios
+      .post(
+        `https://lendie-loan-app.herokuapp.com/api/loan/request-loan/${user.id}`,
+        data,
+        config
+      )
+      .then((response) => {
+        return response.data;
+      });
+  }
+};
+
+export const getLoanAction = async () => {
+  const user = getUser();
+
+  if (user) {
+    const config = {
+      headers: {
+        token: user.token,
+      },
+    };
+    return axios
+      .get(
+        `https://lendie-loan-app.herokuapp.com/api/loan/loan-history/${user.id}`,
+        config
+      )
+      .then((response) => {
+        return response.data;
+      });
+  }
+};
