@@ -327,7 +327,11 @@ const Overview = () => {
       <Heading mb={5} mt={5} ml={2} fontSize={16}>
         Disbursment Overview
       </Heading>
-      <Flex display="flex" direction={['column', 'row', 'row']} mb={[10, 0]}>
+      <Flex
+        display="flex"
+        direction={['column', 'row', 'row']}
+        mb={[32, 28, 10]}
+      >
         <Box
           minW="220px"
           borderRadius={5}
