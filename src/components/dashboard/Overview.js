@@ -241,7 +241,7 @@ const Overview = () => {
             )}
           </Tbody>
         </Table>
-        {loanInfo.loanHistory === 0 && !loanInfo.activeLoan && (
+        {loanInfo.loanHistory.length === 0 && !loanInfo.activeLoan && (
           <Box>
             <Center height="200px" bg="whiteAlpha.800">
               <Heading color="GrayText">No Past Loans</Heading>
@@ -318,3 +318,7 @@ const Overview = () => {
 };
 
 export default Overview;
+
+//Update firstTimeUser
+//pay loan page
+//delete loan
