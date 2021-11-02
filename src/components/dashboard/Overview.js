@@ -6,16 +6,30 @@ import {
   Thead,
   Flex,
   Tbody,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  Button,
   Tr,
   Center,
+  IconButton,
+  Tooltip,
   Th,
   Td,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { getLoanAction } from '../../utils/Actions';
+import { FaTrash } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { getLoanAction, deleteLoanAction } from '../../utils/Actions';
 
 const Overview = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = () => setIsOpen(false);
+  const cancelRef = React.useRef();
   const [loanInfo, setLoanInfo] = useState({
+    _id: '',
     createdAt: '',
     activeLoan: {
       amount: '',
@@ -24,6 +38,7 @@ const Overview = () => {
       amountRepaid: '',
       repaymentDate: '',
     },
+    loanHistory: [],
   });
   const [loading, setLoading] = useState(true);
   const [sum, setSum] = useState(0);
@@ -178,6 +193,7 @@ const Overview = () => {
               >
                 Due Date
               </Th>
+              <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -187,18 +203,20 @@ const Overview = () => {
                     <Tr key={no}>
                       <Td fontSize={10}>{index.purpose}</Td>
                       <Td fontSize={10}>
-                        <Text
-                          color="#fff"
-                          bg="brand.success"
-                          textAlign="center"
-                          borderRadius="5"
-                          pt={1}
-                          pb={1}
-                          pl={4}
-                          pr={4}
-                        >
-                          {index.status}
-                        </Text>
+                        <Tooltip label="This loan has been repaid">
+                          <Text
+                            color="#fff"
+                            bg="brand.success"
+                            textAlign="center"
+                            borderRadius="5"
+                            pt={1}
+                            pb={1}
+                            pl={4}
+                            pr={4}
+                          >
+                            {index.status}
+                          </Text>
+                        </Tooltip>
                       </Td>
                       <Td fontSize={10}>₦{index.amount}</Td>
                       <Td fontSize={10}>₦{index.interest}</Td>
@@ -212,22 +230,30 @@ const Overview = () => {
               <Tr>
                 <Td fontSize={10}>{loanInfo.activeLoan.purpose}</Td>
                 <Td fontSize={10}>
-                  <Text
-                    color="#fff"
-                    bg={
+                  <Tooltip
+                    label={
                       loanInfo.activeLoan.status === 'Pending'
-                        ? 'brand.info'
-                        : 'brand.warning'
+                        ? 'Your loan is currently being reviewed for disbursment'
+                        : 'Your loan has been disbursed'
                     }
-                    textAlign="center"
-                    borderRadius="5"
-                    pt={1}
-                    pb={1}
-                    pl={4}
-                    pr={4}
                   >
-                    {loanInfo.activeLoan.status}
-                  </Text>
+                    <Text
+                      color="#fff"
+                      bg={
+                        loanInfo.activeLoan.status === 'Pending'
+                          ? 'brand.info'
+                          : 'brand.warning'
+                      }
+                      textAlign="center"
+                      borderRadius="5"
+                      pt={1}
+                      pb={1}
+                      pl={4}
+                      pr={4}
+                    >
+                      {loanInfo.activeLoan.status}
+                    </Text>
+                  </Tooltip>
                 </Td>
                 <Td fontSize={10}>₦{loanInfo.activeLoan.amount}</Td>
                 <Td fontSize={10}>₦{loanInfo.activeLoan.interest}</Td>
@@ -237,10 +263,59 @@ const Overview = () => {
                 <Td fontSize={10}>
                   {stringDate(loanInfo.activeLoan.repaymentDate)}
                 </Td>
+                <Td>
+                  <IconButton
+                    icon={<FaTrash />}
+                    bgColor="red"
+                    color="white"
+                    size="sm"
+                    _hover={{ bgColor: 'red.300' }}
+                    onClick={() => setIsOpen(true)}
+                  />
+                </Td>
               </Tr>
             )}
           </Tbody>
         </Table>
+        <AlertDialog
+          isOpen={isOpen}
+          leastDestructiveRef={cancelRef}
+          onClose={onClose}
+          size="sm"
+        >
+          <AlertDialogOverlay>
+            <AlertDialogContent>
+              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                Delete Loan request
+              </AlertDialogHeader>
+
+              <AlertDialogBody>
+                Are you sure? You can't undo this action afterwards.
+              </AlertDialogBody>
+
+              <AlertDialogFooter>
+                <Button ref={cancelRef} onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button
+                  colorScheme="red"
+                  onClick={() => {
+                    deleteLoanAction({ loanId: loanInfo._id }).then(
+                      (response) => {
+                        console.log(response);
+                        setLoading(true);
+                        setIsOpen(false);
+                      }
+                    );
+                  }}
+                  ml={3}
+                >
+                  Delete
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialogOverlay>
+        </AlertDialog>
         {loanInfo.loanHistory.length === 0 && !loanInfo.activeLoan && (
           <Box>
             <Center height="200px" bg="whiteAlpha.800">
@@ -253,7 +328,15 @@ const Overview = () => {
         Disbursment Overview
       </Heading>
       <Flex display="flex" direction={['column', 'row', 'row']} mb={[10, 0]}>
-        <Box w="220px" borderRadius={5} mr={14} mt={1} mb={6} p={3} bg="#fff">
+        <Box
+          minW="220px"
+          borderRadius={5}
+          mr={14}
+          mt={1}
+          mb={6}
+          p={3}
+          bg="#fff"
+        >
           <Box mb={7} display="flex" justifyContent="space-between">
             <Text fontSize={12}>Duration</Text>
             <Text fontSize={12} color="brand.info">
@@ -284,7 +367,7 @@ const Overview = () => {
           </Box>
         </Box>
         <Box
-          w="220px"
+          minW="220px"
           borderRadius={5}
           mt={1}
           mb={6}
@@ -297,7 +380,7 @@ const Overview = () => {
             </Text>
             <Text fontSize={23} color="#fff">
               {loanInfo.activeLoan
-                ? '₦' + loanInfo.activeLoan.totalLoan
+                ? '₦' + loanInfo.activeLoan.totalLoan.toLocaleString('en-US')
                 : 'N/A'}
             </Text>
           </Box>
@@ -312,6 +395,20 @@ const Overview = () => {
             </Text>
           </Box>
         </Box>
+        <Center w="full">
+          <Button
+            size="lg"
+            w={['full', '50%']}
+            padding="14px 32px"
+            color="whiteAlpha.900"
+            _hover={{
+              bgColor: '#0E6BA8',
+            }}
+            bgColor="brand.300"
+          >
+            Repay loan
+          </Button>
+        </Center>
       </Flex>
     </Box>
   );

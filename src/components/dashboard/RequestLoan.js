@@ -362,7 +362,7 @@ function RequestLoan({ user }) {
             </Select>
           </FormControl>
         </Flex>
-        <Box pl={1} pt={8} mb={[32, 28, 0]}>
+        <Box pl={1} pt={8} mb={[32, 28, 20]}>
           <FormControl>
             <Text color="#333333">Loan Period</Text>
             {editable.time ? (
