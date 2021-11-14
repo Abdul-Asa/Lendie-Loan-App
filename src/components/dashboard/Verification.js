@@ -88,7 +88,7 @@ const Verification = ({ user }) => {
   };
 
   return (
-    <Stack p={[2, 4, 6]} spacing="30px">
+    <Stack p={[2, 4, 6]} spacing="30px" overflow="auto">
       <Heading fontSize="2xl">Verification</Heading>
       <FormControl px={[0, 2]} w="full">
         <Stack

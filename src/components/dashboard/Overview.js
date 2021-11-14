@@ -134,7 +134,7 @@ const Overview = () => {
               ? 'Due on :  ' + stringDate(loanInfo.activeLoan.repaymentDate)
               : '.'}
           </Text>
-          <Box mt={7} borderRadius="50" w={5} p={3} bg="brand.warning"></Box>
+          <Box mt={7} borderRadius="50" w={5} p={3} bg="gray"></Box>
           <Text mt={2} fontSize={9}>
             Amount to be Repaid
           </Text>
@@ -146,7 +146,7 @@ const Overview = () => {
               : 'No active loan'}
           </Text>
           <Text fontSize={9}>.</Text>
-          <Box mt={7} borderRadius="50" w={5} p={3} bg="brand.info"></Box>
+          <Box mt={7} borderRadius="50" w={5} p={3} bg="gray"></Box>
           <Text mt={2} fontSize={9}>
             Amount Repaid
           </Text>
@@ -158,7 +158,7 @@ const Overview = () => {
               : '₦' + sum.toLocaleString('en-US')}
           </Text>
           <Text fontSize={9}> Since : {stringDate(loanInfo.createdAt)}</Text>
-          <Box mt={7} borderRadius="50" w={5} p={3} bg="brand.success"></Box>
+          <Box mt={7} borderRadius="50" w={5} p={3} bg="gray"></Box>
           <Text mt={2} fontSize={9}>
             Total loan taken
           </Text>
@@ -284,14 +284,16 @@ const Overview = () => {
                   {stringDate(loanInfo.activeLoan.repaymentDate)}
                 </Td>
                 <Td>
-                  <IconButton
-                    icon={<FaTrash />}
-                    bgColor="red"
-                    color="white"
-                    size="sm"
-                    _hover={{ bgColor: 'red.300' }}
-                    onClick={() => setIsOpen(true)}
-                  />
+                  {loanInfo.activeLoan.status === 'Pending' && (
+                    <IconButton
+                      icon={<FaTrash />}
+                      bgColor="red"
+                      color="white"
+                      size="sm"
+                      _hover={{ bgColor: 'red.300' }}
+                      onClick={() => setIsOpen(true)}
+                    />
+                  )}
                 </Td>
               </Tr>
             )}

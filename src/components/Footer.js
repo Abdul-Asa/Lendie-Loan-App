@@ -49,7 +49,7 @@ function Footer() {
               color="#00072D"
               pb={2}
               as="a"
-              href="/why-lendie"
+              href="/#About"
               _hover={{ color: 'brand.200' }}
             >
               Why Lendie
@@ -58,7 +58,7 @@ function Footer() {
               color="#00072D"
               pb={2}
               as="a"
-              href="/FAQS"
+              href="/#FAQs"
               _hover={{ color: 'brand.200' }}
             >
               FAQs
@@ -67,7 +67,7 @@ function Footer() {
               color="#00072D"
               pb={2}
               as="a"
-              href="/contact-us"
+              href="/#ContactUs"
               _hover={{ color: 'brand.200' }}
             >
               Contact Us
@@ -90,7 +90,7 @@ function Footer() {
               color="#00072D"
               pb={2}
               as="a"
-              href="/why-lendie"
+              href="/#About"
               _hover={{ color: 'brand.200' }}
             >
               Why Lendie
@@ -99,7 +99,7 @@ function Footer() {
               color="#00072D"
               pb={2}
               as="a"
-              href="/FAQS"
+              href="/#FAQs"
               _hover={{ color: 'brand.200' }}
             >
               FAQs
@@ -108,7 +108,7 @@ function Footer() {
               color="#00072D"
               pb={2}
               as="a"
-              href="/contact-us"
+              href="/#ContactUs"
               _hover={{ color: 'brand.200' }}
             >
               Contact Us

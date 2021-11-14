@@ -7,6 +7,7 @@ import ConfirmationSuccess from '../components/verification/ConfirmationSuccess'
 import LandingPage from '../pages/LandingPage';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
+import Team from '../pages/Team';
 import EmailConfirmation from '../pages/EmailConfirmation';
 import Signup from '../pages/Signup';
 
@@ -23,10 +24,10 @@ const Routes = () => {
         <Signup />
       </Route>
 
-      <Route path="/about-us"></Route>
-      <Route path="/why-lendie"></Route>
-      <Route path="/FAQS"></Route>
-      <Route path="/contact-us"></Route>
+      <Route path="/about-us">
+        <Team />
+      </Route>
+
       <Route path="/email-confirmation">
         <EmailConfirmation />
       </Route>

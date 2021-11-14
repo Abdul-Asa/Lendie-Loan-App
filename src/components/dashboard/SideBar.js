@@ -192,6 +192,7 @@ const SideBar = ({ user, ...rest }) => {
               T & C
             </Text>
           </Button>
+
           <Button
             mt="25%"
             pl={12}

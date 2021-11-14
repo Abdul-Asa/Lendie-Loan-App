@@ -192,7 +192,7 @@ function RequestLoan({ user }) {
       <Box
         p={[3, 8, 10]}
         bg="whiteAlpha.900"
-        maxH="600px"
+        h="90vh"
         shadow="lg"
         overflow="auto"
       >
