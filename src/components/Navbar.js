@@ -46,11 +46,11 @@ const Navbar = () => {
           spacing="8"
           display={{ base: 'none', md: 'block' }}
         >
-          <Text as="a" href="/#About" _hover={{ color: 'brand.200' }}>
-            About
+          <Text as="a" href="/about-us" _hover={{ color: 'brand.200' }}>
+            About Us
           </Text>
 
-          <Text as="a" href="/#WhyLendie" _hover={{ color: 'brand.200' }}>
+          <Text as="a" href="/#About" _hover={{ color: 'brand.200' }}>
             Why Lendie
           </Text>
           <Text as="a" href="/#FAQs" _hover={{ color: 'brand.200' }}>
@@ -123,13 +123,13 @@ const Navbar = () => {
         <Box h="full" display={{ base: 'block', md: 'none' }}>
           <Stack p="16px" color="brand.300" ml={8} fontWeight="600">
             <Flex h="30px">
-              <Text as="a" href="/#About">
-                About
+              <Text as="a" href="/about-us">
+                About Us
               </Text>
             </Flex>
             <Divider />
             <Flex h="30px">
-              <Text as="a" href="/#WhyLendie">
+              <Text as="a" href="/#About">
                 Why Lendie
               </Text>
             </Flex>
