@@ -74,7 +74,7 @@ function WhyLendie() {
           </VStack>
         </Center>
       </Flex>
-      <Center>
+      <Center py="70px">
         <Button
           color="#0A2472"
           size="lg"
