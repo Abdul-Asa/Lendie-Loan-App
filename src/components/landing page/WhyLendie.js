@@ -35,7 +35,8 @@ function WhyLendie() {
               Sign Up
             </Heading>
             <Text color="#0A2472" justifySelf="center">
-              Sign up to create your Account
+              Sign up to create your <br />
+              account
             </Text>
           </VStack>
         </Center>
@@ -68,8 +69,7 @@ function WhyLendie() {
               Get Funded
             </Heading>
             <Text color="#0A2472" justifySelf="center">
-              After completing previous steps, you would receieve loan amount
-              requested in your bank account in a few minutes.
+              After verification, you would be credited with loan amount
             </Text>
           </VStack>
         </Center>
@@ -81,7 +81,7 @@ function WhyLendie() {
           _hover={{
             bgColor: '#DDE5E9',
           }}
-          mt={2}
+          mt={4}
           as="a"
           w="130px"
           href="/signup"

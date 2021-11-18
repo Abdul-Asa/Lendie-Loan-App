@@ -1,4 +1,4 @@
-import { getUser } from './LocalStorage';
+import { getUser, getId } from './LocalStorage';
 import axios from 'axios';
 
 // const { BASEURL } = 'https://lendie-loan-app.herokuapp.com';
@@ -200,6 +200,32 @@ export const repayLoanAction = async (data) => {
         `https://lendie-loan-app.herokuapp.com/api/loan/repay-loan/${user.id}`,
         data,
         config
+      )
+      .then((response) => {
+        return response.data;
+      });
+  }
+};
+
+export const checkForgotAction = async (data) => {
+  return axios
+    .post(
+      `https://lendie-loan-app.herokuapp.com/api/auth/check-forgot-password`,
+      data
+    )
+    .then((response) => {
+      return response.data;
+    });
+};
+
+export const resetPasswordAction = async (data) => {
+  const resetId = getId();
+
+  if (resetId) {
+    return axios
+      .post(
+        `https://lendie-loan-app.herokuapp.com/api/auth/reset-password/${resetId.id}`,
+        data
       )
       .then((response) => {
         return response.data;

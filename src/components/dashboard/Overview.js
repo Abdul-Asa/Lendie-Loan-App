@@ -348,11 +348,7 @@ const Overview = () => {
       <Heading mb={5} mt={5} ml={2} fontSize={16}>
         Disbursment Overview
       </Heading>
-      <Flex
-        display="flex"
-        direction={['column', 'row', 'row']}
-        mb={[32, 28, 10]}
-      >
+      <Flex display="flex" direction={['column', 'row', 'row']} mb={[2, 8, 10]}>
         <Box
           minW="220px"
           borderRadius={5}
@@ -420,103 +416,101 @@ const Overview = () => {
             </Text>
           </Box>
         </Box>
-        <Center w="full">
-          <Button
-            size="lg"
-            w={['full', '50%']}
-            padding="14px 32px"
-            color="whiteAlpha.900"
-            _hover={{
-              bgColor: '#0E6BA8',
-            }}
-            bgColor="brand.300"
-            // disabled={!loanInfo.activeLoan}
-            onClick={onOpen}
-          >
-            Repay loan
-          </Button>
-
-          <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Repay Loan</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <Box p={4}>
-                  <FormLabel color="#00072D" fontSize="14px">
-                    Total amount owed:{' '}
-                    {loanInfo.activeLoan
-                      ? '₦' +
-                        loanInfo.activeLoan.totalLoan.toLocaleString('en-US')
-                      : 'N/A'}
-                  </FormLabel>
-                  <FormLabel color="#00072D" fontSize="14px">
-                    Amount left to be paid:{' '}
-                    {loanInfo.activeLoan
-                      ? '₦' +
-                        (
-                          loanInfo.activeLoan.totalLoan -
-                          loanInfo.activeLoan.amountRepaid
-                        ).toLocaleString('en-US')
-                      : 'N/A'}
-                  </FormLabel>
-                  <FormLabel color="#00072D" fontSize="14px" mt={4}>
-                    How much do you want to repay?
-                  </FormLabel>
-                  <Flex justify="space-between" maxW="400px">
-                    <InputGroup>
-                      <InputLeftElement
-                        pointerEvents="none"
-                        color="gray"
-                        children="₦ |"
-                      />
-                      <Input
-                        type="number"
-                        min={1000}
-                        max={500000}
-                        value={repayment}
-                        onChange={(e) => {
-                          setRepayment(Number(e.target.value));
-                        }}
-                        name="amount"
-                      />
-                    </InputGroup>
-                  </Flex>
-                </Box>
-                {error.message && <Alert>{error.message}</Alert>}
-              </ModalBody>
-
-              <ModalFooter>
-                <Button variant="ghost" onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button
-                  colorScheme="blue"
-                  mr={3}
-                  isDisabled={disabled}
-                  isLoading={buttonLoad}
-                  onClick={() => {
-                    setButtonLoad(true);
-                    repayLoanAction({
-                      loanId: loanInfo._id,
-                      amountRepaid: repayment,
-                    }).then((response) => {
-                      setError(response);
-                      setButtonLoad(false);
-                      if (response.message === 'Loan has been fully repaid') {
-                        setDisabled(true);
-                      }
-                      setLoading(true);
-                    });
-                  }}
-                >
-                  Repay loan
-                </Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </Center>
       </Flex>
+      <Button
+        size="lg"
+        w={['full', '40%']}
+        padding="14px 32px"
+        color="whiteAlpha.900"
+        _hover={{
+          bgColor: '#0E6BA8',
+        }}
+        bgColor="brand.300"
+        // disabled={!loanInfo.activeLoan}
+        onClick={onOpen}
+        mb={20}
+      >
+        Repay loan
+      </Button>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Repay Loan</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Box p={4}>
+              <FormLabel color="#00072D" fontSize="14px">
+                Total amount owed:{' '}
+                {loanInfo.activeLoan
+                  ? '₦' + loanInfo.activeLoan.totalLoan.toLocaleString('en-US')
+                  : 'N/A'}
+              </FormLabel>
+              <FormLabel color="#00072D" fontSize="14px">
+                Amount left to be paid:{' '}
+                {loanInfo.activeLoan
+                  ? '₦' +
+                    (
+                      loanInfo.activeLoan.totalLoan -
+                      loanInfo.activeLoan.amountRepaid
+                    ).toLocaleString('en-US')
+                  : 'N/A'}
+              </FormLabel>
+              <FormLabel color="#00072D" fontSize="14px" mt={4}>
+                How much do you want to repay?
+              </FormLabel>
+              <Flex justify="space-between" maxW="400px">
+                <InputGroup>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    color="gray"
+                    children="₦ |"
+                  />
+                  <Input
+                    type="number"
+                    min={1000}
+                    max={500000}
+                    value={repayment}
+                    onChange={(e) => {
+                      setRepayment(Number(e.target.value));
+                    }}
+                    name="amount"
+                  />
+                </InputGroup>
+              </Flex>
+            </Box>
+            {error.message && <Alert>{error.message}</Alert>}
+          </ModalBody>
+
+          <ModalFooter>
+            <Button variant="ghost" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button
+              colorScheme="blue"
+              mr={3}
+              isDisabled={disabled}
+              isLoading={buttonLoad}
+              onClick={() => {
+                setButtonLoad(true);
+                repayLoanAction({
+                  loanId: loanInfo._id,
+                  amountRepaid: repayment,
+                }).then((response) => {
+                  setError(response);
+                  setButtonLoad(false);
+                  if (response.message === 'Loan has been fully repaid') {
+                    setDisabled(true);
+                  }
+                  setLoading(true);
+                });
+              }}
+            >
+              Repay loan
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 };

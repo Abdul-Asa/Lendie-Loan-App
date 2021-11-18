@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import Abdullah from '../icons/Abdullah.jpg';
+import Precious from '../icons/Precious.jpeg';
 import Office from '../icons/office.png';
 import { MdWork } from 'react-icons/md';
 import { FaLinkedin } from 'react-icons/fa';
@@ -56,7 +57,7 @@ function TeamInfo() {
                 h={56}
                 fit="cover"
                 objectPosition="center"
-                src=""
+                src={Precious}
                 fallbackSrc="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png"
                 alt="avatar"
               />
@@ -68,14 +69,14 @@ function TeamInfo() {
                 <Flex justify="center" p={3}>
                   <IconButton
                     as="a"
-                    href="https://github.com/Abdul-Asa/"
+                    href="http://linkedin.com/in/precious-oguazu"
                     icon={<FaLinkedin size="20px" />}
                     target="_blank"
                     variant="ghost"
                   />
                   <IconButton
                     as="a"
-                    href="https://abdul-asa.github.io/My-Portfolio/"
+                    href="http://linkedin.com/in/precious-oguazu"
                     icon={<MdWork size="20px" />}
                     variant="ghost"
                     target="_blank"

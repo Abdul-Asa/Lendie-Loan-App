@@ -10,6 +10,7 @@ import Login from '../pages/Login';
 import Team from '../pages/Team';
 import EmailConfirmation from '../pages/EmailConfirmation';
 import Signup from '../pages/Signup';
+import ForgotPassword from '../pages/ForgotPassword';
 
 const Routes = () => {
   return (
@@ -30,6 +31,10 @@ const Routes = () => {
 
       <Route path="/email-confirmation">
         <EmailConfirmation />
+      </Route>
+
+      <Route path="/forgot-password">
+        <ForgotPassword />
       </Route>
 
       <ConfirmRoute
