@@ -147,7 +147,12 @@ const LoginForm = () => {
               )}{' '}
             </Flex>
 
-            <Text as="a" href="/#ContactUs" fontSize="12px" color="brand.300">
+            <Text
+              as="a"
+              href="/forgot-password"
+              fontSize="12px"
+              color="brand.300"
+            >
               Forgot password?
             </Text>
           </Flex>

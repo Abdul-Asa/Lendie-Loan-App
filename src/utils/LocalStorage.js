@@ -27,3 +27,16 @@ export const getCart = (data) => {
 export const deleteCart = () => {
   return localStorage.removeItem('cart');
 };
+
+export const setId = (data) => {
+  return localStorage.setItem('resetId', JSON.stringify(data));
+};
+
+export const getId = () => {
+  const resetId = JSON.parse(localStorage.getItem('resetId'));
+  if (resetId) return resetId;
+  else return null;
+};
+export const removeId = () => {
+  return localStorage.removeItem('resetId');
+};
