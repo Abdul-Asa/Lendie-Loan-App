@@ -104,14 +104,14 @@ function TeamInfo() {
                 <Flex justify="center" p={3}>
                   <IconButton
                     as="a"
-                    href="https://github.com/Abdul-Asa/"
+                    href="/"
                     icon={<FaLinkedin size="20px" />}
                     target="_blank"
                     variant="ghost"
                   />
                   <IconButton
                     as="a"
-                    href="https://abdul-asa.github.io/My-Portfolio/"
+                    href="/"
                     icon={<MdWork size="20px" />}
                     variant="ghost"
                     target="_blank"
@@ -139,14 +139,14 @@ function TeamInfo() {
                 <Flex justify="center" p={3}>
                   <IconButton
                     as="a"
-                    href="https://github.com/Abdul-Asa/"
+                    href="/"
                     icon={<FaLinkedin size="20px" />}
                     target="_blank"
                     variant="ghost"
                   />
                   <IconButton
                     as="a"
-                    href="https://abdul-asa.github.io/My-Portfolio/"
+                    href="/"
                     icon={<MdWork size="20px" />}
                     variant="ghost"
                     target="_blank"
@@ -215,14 +215,14 @@ function TeamInfo() {
                 <Flex justify="center" p={3}>
                   <IconButton
                     as="a"
-                    href="https://github.com/Abdul-Asa/"
+                    href="/"
                     icon={<FaLinkedin size="20px" />}
                     target="_blank"
                     variant="ghost"
                   />
                   <IconButton
                     as="a"
-                    href="https://abdul-asa.github.io/My-Portfolio/"
+                    href="/"
                     icon={<MdWork size="20px" />}
                     variant="ghost"
                     target="_blank"
@@ -250,14 +250,14 @@ function TeamInfo() {
                 <Flex justify="center" p={3}>
                   <IconButton
                     as="a"
-                    href="https://github.com/Abdul-Asa/"
+                    href="/"
                     icon={<FaLinkedin size="20px" />}
                     target="_blank"
                     variant="ghost"
                   />
                   <IconButton
                     as="a"
-                    href="https://abdul-asa.github.io/My-Portfolio/"
+                    href="/"
                     icon={<MdWork size="20px" />}
                     variant="ghost"
                     target="_blank"
