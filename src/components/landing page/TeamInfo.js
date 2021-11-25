@@ -11,6 +11,9 @@ import {
 import React from 'react';
 import Abdullah from '../icons/Abdullah.jpg';
 import Precious from '../icons/Precious.jpeg';
+import Edet from '../icons/Edet.jpg';
+import Funmbi from '../icons/Funbi.jpg';
+
 import Office from '../icons/office.png';
 import { MdWork } from 'react-icons/md';
 import { FaLinkedin } from 'react-icons/fa';
@@ -91,8 +94,9 @@ function TeamInfo() {
                 w="full"
                 h={56}
                 fit="cover"
+                objectFit="cover"
                 objectPosition="center"
-                src=""
+                src={Edet}
                 fallbackSrc="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png"
                 alt="avatar"
               />
@@ -104,14 +108,14 @@ function TeamInfo() {
                 <Flex justify="center" p={3}>
                   <IconButton
                     as="a"
-                    href="/"
+                    href="https://www.linkedin.com/in/edet-ebek/"
                     icon={<FaLinkedin size="20px" />}
                     target="_blank"
                     variant="ghost"
                   />
                   <IconButton
                     as="a"
-                    href="/"
+                    href="https://www.linkedin.com/in/edet-ebek/"
                     icon={<MdWork size="20px" />}
                     variant="ghost"
                     target="_blank"
@@ -202,8 +206,9 @@ function TeamInfo() {
                 w="full"
                 h={56}
                 fit="cover"
+                objectFit="initial"
                 objectPosition="center"
-                src=""
+                src={Funmbi}
                 fallbackSrc="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png"
                 alt="avatar"
               />
@@ -215,14 +220,14 @@ function TeamInfo() {
                 <Flex justify="center" p={3}>
                   <IconButton
                     as="a"
-                    href="/"
+                    href="https://oyelusi-oluwafunmibi-portfolio-website.netlify.app/"
                     icon={<FaLinkedin size="20px" />}
                     target="_blank"
                     variant="ghost"
                   />
                   <IconButton
                     as="a"
-                    href="/"
+                    href="https://oyelusi-oluwafunmibi-portfolio-website.netlify.app/"
                     icon={<MdWork size="20px" />}
                     variant="ghost"
                     target="_blank"
